@@ -1,8 +1,7 @@
 deploy:
 	ssh o2switchopi 'cd ~/sites/appmonitorhub && git pull origin main && make install'
 
-install:
-	vendor/autoload.php .env public/storage public/build/manifest.json
+install: vendor/autoload.php .env public/storage public/build/manifest.json
 	php artisan cache:clear
 	php artisan migrate
 
