@@ -1,3 +1,5 @@
+.PHONY: deploy install
+
 deploy:
 	ssh o2switchopi 'cd ~/sites/appmonitorhub && git pull origin main && make install'
 

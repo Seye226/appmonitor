@@ -17,3 +17,16 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+Route::get('/sites', [\App\Http\Controllers\ApiController::class, 'getSites']);
+Route::get('/sites/{id}', [\App\Http\Controllers\ApiController::class, 'getSite']);
+Route::get('/searchSites', [\App\Http\Controllers\ApiController::class, 'searchSites']);
+
+
+Route::get('/sites/{id}/records', [\App\Http\Controllers\ApiController::class, 'receiveSiteRecords']);
+// Route::post('/sites/{id}/records', [\App\Http\Controllers\ApiController::class, 'receiveSiteRecords']);
+
+
+// Route::get('/post/{topic}/{item}/{name}/{data_value}/{data_time}', [\App\Http\Controllers\ApiController::class, 'index']);
+Route::get('/post/{siteref}/{topic}/{item}/{name}/{data_value}/{data_time}', [\App\Http\Controllers\ApiController::class, 'index']);

@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Livewire\Counter;
+use App\Livewire\LiveSite;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,4 +28,13 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+    Route::get('/sites', function () {
+        return view('sites');
+    })->name('sites');
+
+    // Route::get('/livesite', LiveSite::class)->name('sites');
+    // Route::get('/sites/livesite', LiveSite::class)->name('sites');
+    Route::get('/sites/livesite/{siteId}', LiveSite::class)->name('sites.livesite');
+
 });
