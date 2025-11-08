@@ -16,6 +16,7 @@ use App\Events\DataSecPostedEvent;
 
 use App\Models\Site;
 use App\Models\PostedData;
+use App\Models\Data;
 
 class SavePostedData implements ShouldQueue
 // class SavePostedData extends Notification implements ShouldQueue
@@ -181,6 +182,7 @@ $site_id = Site::where('reference', $siteref)->first()->id;
             if ($site_id != null) {
 
                 $postedData=PostedData::where('mqtt_name',$name)
+                // $postedData=Data::where('mqtt_name',$name)
                         // ->where('date',$outputb[5])
                 ->where('site_id',$site_id)
 
@@ -200,6 +202,7 @@ $site_id = Site::where('reference', $siteref)->first()->id;
                     // dd("on est dans le IF-PostedData!!");
                     
                     $postedData=PostedData::create([
+                    // $postedData=Data::create([
 
 
                 'site_id'=>$site_id,

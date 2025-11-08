@@ -30,7 +30,20 @@ Route::middleware([
     })->name('dashboard');
 
     Route::get('/sites', function () {
-        return view('sites');
+        // return view('sites');
+
+        $sites = \App\Models\Site::all();
+
+        // $sites = \App\Models\Site::where('description', 'like', '%' . $this->search . '%')
+        //     ->orWhere('reference', 'like', '%' . $this->search . '%')
+        //     ->orWhere('localisation', 'like', '%' . $this->search . '%')
+        //     ->get();
+
+        return view('sites', [
+            'sites' => $sites,
+        ]);
+
+
     })->name('sites');
 
     // Route::get('/livesite', LiveSite::class)->name('sites');

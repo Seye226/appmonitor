@@ -11,11 +11,22 @@
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
+
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
         <!-- Styles -->
         @livewireStyles
+
+
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+        <style type="text/tailwindcss">
+        @theme {
+            --color-clifford: #da373d;
+        }
+        </style>
+
+        
     </head>
     <body class="font-sans antialiased">
         <x-banner />
@@ -33,6 +44,13 @@
             @endif
 
             <!-- Page Content -->
+
+
+            <div class="border-4 border-indigo-500 ...">
+                <h1>Hi every-body-from-APP.BLADE</h1>
+            </div>
+
+
             <main>
                 {{ $slot }}
             </main>

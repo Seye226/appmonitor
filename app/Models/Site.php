@@ -49,4 +49,10 @@ class Site extends Model
     }
 
 
+    public function Datas()
+    {
+        return $this->hasMany(\App\Models\Data::class, 'site_id');
+    }
+
+
 }

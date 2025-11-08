@@ -8,6 +8,7 @@
 
             <h2>Recherche un site (par reference)</h2>
             <input wire:model="search" type="text">
+            <p>Input: {{$search}}</p>
        
         </div>
 
@@ -23,6 +24,7 @@
 
                 @foreach($sites as $site)
                 <div>
+
                     <div class="flex items-center">
 
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" class="w-6 h-6 stroke-gray-400">
@@ -37,21 +39,23 @@
 
                     <div>
 
-                        <a href="{{ route('sites.livesite', $site->id) }}" :active="request()->routeIs('sites.livesite')">
+                        <a href="{{ route('sites.livesite', $site->id) }}" class="{{request()->routeIs('sites.livesite') ? 'text-indigo-600 underline' : 'text-gray-600 hover:text-indigo-600'}}">
                             Voir details Site
                         </a>
                         <a href="">Voir archives</a>
 
                     </div>
-                    <p class="mt-4 text-gray-500 text-sm leading-relaxed">
-                        Status:
-                            Online|Offline - il y'a une 5 minutes
-                        Details:
-                            Grid =
-                            PV =
-                            Baterie =
-                            Load =
-                    </p>
+
+
+
+
+@('livewire:inside.minisite :mini_site="$site"')
+include('inside.minisite', $site)
+
+
+<livewire:inside.minisite :mini_site="$site">
+
+
 
                 </div>
                 @endforeach

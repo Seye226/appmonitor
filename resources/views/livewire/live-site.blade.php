@@ -9,7 +9,14 @@
                 <div>
                     @foreach($site->postedDatas as $postedData)
                         <div>
-                            Posted Data ID: {{$postedData->id}} - Value: {{$postedData->data_value}} - Timestamp: {{$postedData->created_at}}
+
+                            Posted Data ID: {{$postedData->id}}
+                            - {{ $postedData->mqtt_name }}
+                            - {{ $postedData->value }}
+                            <!-- - - Date: {{-- $postedData->date --}} -->
+                            <!-- - - Time: {{-- $postedData->time --}} -->
+                            - Timestamp: {{$postedData->created_at}}
+
                         </div>
                     @endforeach
                 </div>

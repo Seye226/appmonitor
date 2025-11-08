@@ -10,6 +10,10 @@ class ShowSites extends Component
     public $search = '';
 
     // public $sites;
+    public function mount()
+    {
+        // $this->sites = \App\Models\Site::all();
+    }
 
     public function render()
     {
