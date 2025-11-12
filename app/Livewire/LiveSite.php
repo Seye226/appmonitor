@@ -13,6 +13,9 @@ use Livewire\Attributes\Layout;
 class LiveSite extends Component
 {
     public $count;
+
+    public $thesearch;
+
     public $siteId;
     public $site;
     public function mount($siteId)

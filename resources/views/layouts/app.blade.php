@@ -19,9 +19,9 @@
         @livewireStyles
 
         <script>
-            setInterval( function() {
-                location.reload();
-            }, 60000); //60000 ms = 1 minute
+            // setInterval( function() {
+            //     location.reload();
+            // }, 60000); //60000 ms = 1 minute
         </script>
 
         <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
