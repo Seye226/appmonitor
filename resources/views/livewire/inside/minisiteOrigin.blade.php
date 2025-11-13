@@ -12,18 +12,6 @@
                 {{ $mini_site->id }} - Nb_PostedDatas:{{ $mini_site->postedDatas->count() }}
             </p>
 
-            <p>
-                client: {{$mini_site->client_id}}
-                @if($mini_site->client_id != null && $mini_site->client_id != 3 && $mini_site->client() != null)
-                    {{ $mini_site->client->firstname }} 
-                    {{ $mini_site->client->lastname }} 
-                    {{ $mini_site->client->pseudo }} 
-
-                @else
-                    null
-                @endif
-            </p>
-
         </div>
 
         <div class="border-4 border-indigo-500 ...">

@@ -26,7 +26,10 @@ return new class extends Migration
             
             $table->string('genset_info')->nullable();
 
-            $table->foreignId('client_id')->nullable()->index();
+            
+                // $table->foreignId('client_id')->nullable()->index();
+            $table->foreignId('client_id')->index();
+
             $table->foreignId('origin_superviseur_id')->nullable()->index();
 
             $table->timestamps();

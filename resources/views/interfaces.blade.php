@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Sites') }}
+            {{ __('Interfaces') }}
         </h2>
     </x-slot>
 
@@ -11,7 +11,17 @@
                 
                 <h1>Hello ici</h1>
 
-                <livewire:show-sites/>
+                @if($type == 'sites')
+
+                    <livewire:show-sites/>
+
+                @elseif($type == 'clients')
+                
+                    <livewire:show-clients/>
+
+                @else
+
+                @endif
 
 
             </div>

@@ -1,41 +1,13 @@
 <div class="p-6 lg:p-8 bg-white border-b border-gray-200">
 
-    <h1 class="mt-8 text-2xl font-medium text-gray-900">
-        Liste sites
-        <strong>
-        @if($client_id)
-            du client Id n°: {{$client_id}}
-        @else
-            accecible à l'utisisateur en cours.
-        @endif
-        </strong>
-        (livewire component)
-    </h1>
-    <p>
-        @if($client_id)
-            Nombre de <strong>site(s)</strong> du Client: <strong>{{$sites->count()}}</strong>
-        @else
-            <p>
-                Description de l'utisisateur en cours:
-                <br>
-                {{ Auth::user()->id .' - '. Auth::user()->name .' - '. Auth::user()->email }}
-            </p>
-
-            <p><small>
-                (tous clients liée à l'utilisateur en cours & selon le rôle de l'utilisateur en cours)
-                <strong>
-                    Check-If-Auth()-user IS Supervisor AND If Origin-Supervisor-of-Client/Site
-                </strong>
-            </small></p>
-        @endif
-    </p>
+    <h1 class="mt-8 text-2xl font-medium text-gray-900">Liste clients (livewire component)</h1>
 
     <div class="mt-8 text-2xl font-medium text-gray-900">
 
         <div>
 
             <div>
-            <h2>Recherche un site (par reference)</h2>
+            <h2>Recherche un Client (par nom)</h2>
             <input wire:model="search" type="text">
             <input wire:model.live="search" type="text">
             <input wire:model.live.debounce.300ms="search" type="text">
@@ -58,14 +30,14 @@
     </div>
 
 
-    <h2>Site(s) trouvé(s):</h2>
+    <h2>Client(s) trouvé(s):</h2>
 
 
     <div class="bg-gray-200 bg-opacity-25 grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 p-6 lg:p-8"> 
 
         <!-- <div> -->
 
-                @foreach($sites as $site)
+                @foreach($clients as $client)
                 <div>
 
                     <div class="flex items-center">
@@ -75,22 +47,24 @@
                         </svg>
 
                         <h3 class="ms-3 text-xl font-semibold text-gray-900">
-                            <a href="{{ route('sites.livesite', $site->id) }}">Site-{{$site->id}} - ref:{{$site->reference}} (Voir details)</a>
+                            <a href="{{ route('clients.liveclient', $client->id) }}">Client-{{$client->id}} - ref:{{$client->reference}} (Voir details)</a>
                         </h3>
 
                     </div>
 
                     <div>
 
-                        <a href="{{ route('sites.livesite', $site->id) }}" class="{{request()->routeIs('sites.livesite') ? 'text-indigo-600 underline' : 'text-gray-600 hover:text-indigo-600'}}">
-                            Voir details Site
+                        <a href="{{ route('clients.liveclient', $client->id) }}" class="{{request()->routeIs('clients.liveclient') ? 'text-indigo-600 underline' : 'text-gray-600 hover:text-indigo-600'}}">
+                            Voir details Client
                         </a>
                         <a href="">Voir archives</a>
 
                     </div>
 
 
-<livewire:inside.minisite :mini_site="$site" :wire:key="$site->id">
+
+
+<livewire:inside.miniclient :mini_client="$client" :wire:key="$client->id">
 
 
 

@@ -23,7 +23,7 @@ class Client extends Model
 
     public function sites()
     {
-        return $this->hasMany(\App\Models\Site::class, 'site_id');
+        return $this->hasMany(\App\Models\Site::class, 'client_id');
     }
 
 

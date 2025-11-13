@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Inside;
+namespace App\Livewire\Inside\Plugs;
 
 use Livewire\Component;
 
@@ -15,6 +15,6 @@ class Chartsite extends Component
 
     public function render()
     {
-        return view('livewire..inside.chartsite');
+        return view('livewire..inside.plugs.chartsite');
     }
 }

@@ -4,24 +4,24 @@ namespace App\Livewire\Inside;
 
 use Livewire\Component;
 
-use App\Models\Site;
+use App\Models\client;
 use App\Models\Topic;
 
-class Minisite extends Component
+class Miniclient extends Component
 {
 
-    // public $site;
-    public $mini_site;
-    // public $mini_site_id;
+    // public $client;
+    public $mini_client;
+    // public $mini_client_id;
 
     public $topics;
 
     public $data_points;
     public function mount()
-    // public function mount($mini_site)
-    // public function mount($mini_site_id)
+    // public function mount($mini_client)
+    // public function mount($mini_client_id)
     {
-        // $this->mini_site = Site::find($mini_site_id);
+        // $this->mini_client = client::find($mini_client_id);
 
         $this->topics = Topic::all();
 
@@ -37,6 +37,6 @@ class Minisite extends Component
     public function render()
     {
 
-        return view('livewire..inside.minisite');
+        return view('livewire..inside.miniclient');
     }
 }

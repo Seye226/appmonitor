@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Inside;
+namespace App\Livewire\Inside\Plugs;
 
 use Livewire\Component;
 
@@ -19,6 +19,6 @@ class Globalsite extends Component
 
     public function render()
     {
-        return view('livewire..inside.globalsite');
+        return view('livewire..inside.plugs.globalsite');
     }
 }
