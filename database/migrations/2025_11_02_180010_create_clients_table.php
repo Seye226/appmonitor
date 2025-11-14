@@ -23,6 +23,11 @@ return new class extends Migration
             $table->string('adresse')->unique();
             $table->string('telephone')->unique();
 
+            
+            $table->foreignId('user_id')->nullable()->index();
+            // $table->foreignId('superviseur_id')->nullable()->index();
+
+
             $table->timestamps();
         });
     }

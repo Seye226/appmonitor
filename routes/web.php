@@ -74,6 +74,16 @@ Route::middleware([
 
     })->name('clients');
 
+
+    Route::get('/manage', function () {
+
+        return view('interfaces', [
+            'type' => 'manage',
+        ]);
+
+    })->name('manage');
+
+
     Route::get('/clients/liveclient/{clientId}', LiveClient::class)->name('clients.liveclient');
 
 

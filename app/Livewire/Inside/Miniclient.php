@@ -10,6 +10,9 @@ use App\Models\Topic;
 class Miniclient extends Component
 {
 
+    public $type;
+
+
     // public $client;
     public $mini_client;
     // public $mini_client_id;

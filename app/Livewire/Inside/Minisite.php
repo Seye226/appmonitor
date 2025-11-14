@@ -10,6 +10,8 @@ use App\Models\Topic;
 class Minisite extends Component
 {
 
+    public $type;
+
     // public $site;
     public $mini_site;
     // public $mini_site_id;

@@ -17,10 +17,16 @@ class Client extends Model
         'pseudo',
         'adresse',
         'telephone',
+"user_id",
 
     ];
 
 
+    public function user()
+    {
+        return $this->belongsTo(\App\Models\User::class, 'user_id');
+    }
+    
     public function sites()
     {
         return $this->hasMany(\App\Models\Site::class, 'client_id');

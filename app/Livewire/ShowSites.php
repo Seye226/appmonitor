@@ -6,6 +6,18 @@ use Livewire\Component;
 
 class ShowSites extends Component
 {
+    public $viewoptionselected="Grid";
+    public $viewoptions=[
+        'Grid'=>"grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 p-6 lg:p-8",
+        // 'Grid'=>"grid grid-cols-1 xl:grid-cols-2 gap-6 lg:gap-8 p-6 lg:p-8",
+
+        // 'List'=>"grid grid-cols-1 xl:grid-cols-2 gap-6 lg:gap-8 p-6 lg:p-8",
+        'List'=>"grid grid-cols-1 gap-6 lg:gap-8 p-6 lg:p-8",
+
+        'Component'=>""
+    ];
+
+    public $type;
 
     public $search = '';
     public $searchTerm = '';

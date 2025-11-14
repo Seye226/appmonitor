@@ -16,16 +16,31 @@
 
         <div class="border-4 border-indigo-500 ...">
             
-            @foreach($mini_client->sites as $site)
+            <div>
 
-                <h1>{{$site->id .' - '. $site->reference .' - '. $site->localisation}}</h1>
-                <p>
-                    {{$site->description }}
-                </p>
-                
-                <livewire:inside.minisite :mini_site="$site" :wire:key="$site->id">
+                <h1>mini-client-TYPE:{{$type}}</h1>
 
-            @endforeach
+                <div style="display:none;">
+
+                    @foreach($mini_client->sites as $site)
+
+                        <h1>{{$site->id .' - '. $site->reference .' - '. $site->localisation}}</h1>
+                        <p>
+                            {{$site->description }}
+                        </p>
+                        
+                        <livewire:inside.minisite :mini_site="$site" :wire:key="$site->id">
+
+                    @endforeach
+                </div>
+
+                <div>
+
+                    <livewire:show-sites :type="$type" :client_id="$mini_client->id" :wire:key="$mini_client->id">
+
+                </div>
+            </div>
+
 
         </div>
 

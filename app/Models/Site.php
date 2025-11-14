@@ -34,8 +34,12 @@ class Site extends Model
 
             // $table->foreignId('client_id')->nullable()->index();
             // $table->foreignId('origin_superviseur_id')->nullable()->index();
+            // $table->foreignId('superviseur_id')->nullable()->index();
 
 
+        'superviseur_id',
+
+        
     ];
 
 
@@ -43,6 +47,10 @@ class Site extends Model
     public function client()
     {
         return $this->belongsTo(\App\Models\Client::class, 'client_id');
+    }
+    public function superviseur()
+    {
+        return $this->belongsTo(\App\Models\Superviseur::class, 'superviseur_id');
     }
 
     public function PostedDatas()

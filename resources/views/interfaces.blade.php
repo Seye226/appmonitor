@@ -13,11 +13,15 @@
 
                 @if($type == 'sites')
 
-                    <livewire:show-sites/>
+                    <livewire:show-sites :type="'sites'"  :wire:key="time()"/>
 
                 @elseif($type == 'clients')
                 
-                    <livewire:show-clients/>
+                    <livewire:show-clients :type="'clients'" />
+
+                @elseif($type == 'manage')
+                
+                    <livewire:show-manage :type="'manage'" />
 
                 @else
 

@@ -1,5 +1,9 @@
 <div class="p-6 lg:p-8 bg-white border-b border-gray-200">
 
+    <h1>
+        Show-sites-TYPE: {{$type}}
+    </h1>
+
     <h1 class="mt-8 text-2xl font-medium text-gray-900">
         Liste sites
         <strong>
@@ -36,18 +40,20 @@
 
             <div>
             <h2>Recherche un site (par reference)</h2>
-            <input wire:model="search" type="text">
-            <input wire:model.live="search" type="text">
-            <input wire:model.live.debounce.300ms="search" type="text">
+            <input id="{{'st-test'.($client_id??'').'-'.time()}}" wire:model="search" type="text">
+            <input id="{{'st-test-bis'.($client_id??'').'-'.time()}}" wire:model.live="search" type="text">
+
+            <input id="{{'st'.($client_id??'').'-'.time()}}" wire:model.live.debounce.300ms="search" type="text">
             <p>Input: {{$search}}</p>
             </div>
 
             <div>
                 searchTermList
-                <select wire:model.live.debounce.300ms="searchTerm" name="searchTermName" id="searchTermId">
-                    @foreach($searchTermList as $term)
-                        <!-- <option wire:click="setSearchTerm('{{--$term--}}')">{{--$term--}}</option> -->
+                <select wire:model.live.debounce.300ms="searchTerm" name="searchTermSiteName-{{$client_id??''}}" id="searchTermSiteId-{{$client_id??''}}">
+                    @foreach($searchTermList as $ct=>$term)
                         <option value="{{$term}}">{{$term}}</option>
+
+                        <!-- <option id="searchTermSiteId-{{-- ($client_id??'').'-'.$ct --}}" value="{{-- $term --}}">{{-- $term --}}</option> -->
                     @endforeach
                 </select>
 
@@ -60,8 +66,34 @@
 
     <h2>Site(s) trouvé(s):</h2>
 
+    <select wire:model.live.debounce.300ms="viewoptionselected" name="viewoption-SS-Name-{{$client_id??''}}" id="viewoption-SS-Id-{{$client_id??''}}">
+        @foreach($viewoptions as $optionKey=>$option)
+            <option value="{{$optionKey}}">{{$optionKey}}</option>
+        @endforeach
+    </select>
+    viewoptionselected: {{ $viewoptionselected }}
 
-    <div class="bg-gray-200 bg-opacity-25 grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 p-6 lg:p-8"> 
+    @if($viewoptionselected == 'Grid')
+        <p>Affichage en mode Grid</p>
+
+    @elseif($viewoptionselected == 'List')
+        <p>Affichage en mode List</p>
+
+    @else
+        <p>Affichage par défaut (Grid)</p>
+
+    @endif
+
+
+    {{$viewoptions[$viewoptionselected]}}
+
+                    <!-- <div class="bg-gray-200 bg-opacity-25 grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 p-6 lg:p-8">  -->
+                <!-- <div class="bg-gray-200 bg-opacity-25 grid grid-cols-1 xl:grid-cols-2 gap-6 lg:gap-8 p-6 lg:p-8">  -->
+        <!-- <div class="bg-gray-200 bg-opacity-25 {{-- $viewoptions[$viewoptionselected] --}}"> -->
+    <!-- Force List view IF-NOT PAGE-type-Clients-Interface-(URL:/clients) -->
+    <div class="bg-gray-200 bg-opacity-25 {{ $type === 'sites' ? $viewoptions[$viewoptionselected] : $viewoptions['List'] }}" >
+    <!-- </div> -->
+    <!-- <div class="bg-gray-200 bg-opacity-25"> -->
 
         <!-- <div> -->
 
@@ -90,7 +122,7 @@
                     </div>
 
 
-<livewire:inside.minisite :mini_site="$site" :wire:key="$site->id">
+<livewire:inside.minisite :type="$type" :mini_site="$site" :wire:key="$site->id.'-'.$viewoptionselected.'-'.time()">
 
 
 

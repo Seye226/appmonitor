@@ -4,9 +4,9 @@ namespace App\Livewire;
 
 use Livewire\Component;
 
-use App\Models\Client;
+use App\Models\Superviseur;
 
-class ShowClients extends Component
+class ShowManage extends Component
 {
 
     public $type;
@@ -31,12 +31,12 @@ class ShowClients extends Component
     ];
 
 
-    public $clients;
-    // public $clients=[];
+    public $superviseurs;
+    // public $superviseurs=[];
     
     public function mount()
     {
-        // $this->clients = \App\Models\Client::all();
+        // $this->superviseurs = \App\Models\Superviseur::all();
 
         $this->updatedSearch();
     }
@@ -46,20 +46,20 @@ class ShowClients extends Component
         // if ($this->search == '') {
         //     # code...
 
-        //     $this->clients = \App\Models\Client::all();
+        //     $this->superviseurs = \App\Models\Superviseur::all();
 
         // }else {
             # code...
 
 
-            // $this->clients = \App\Models\Client::where('description', 'like', '%' . $this->search . '%')
+            // $this->superviseurs = \App\Models\Superviseur::where('description', 'like', '%' . $this->search . '%')
             //     ->orWhere('reference', 'like', '%' . $this->search . '%')
             //     ->orWhere('localisation', 'like', '%' . $this->search . '%')
             //     ->get();
 
             if ($this->searchTerm == 'All' || $this->searchTerm == '') {
 
-                $this->clients = \App\Models\Client::where('firstname', 'like', '%' . $this->search . '%')
+                $this->superviseurs = \App\Models\Superviseur::where('firstname', 'like', '%' . $this->search . '%')
                     ->orWhere('lastname', 'like', '%' . $this->search . '%')
                     ->orWhere('pseudo', 'like', '%' . $this->search . '%')
                     ->orWhere('adresse', 'like', '%' . $this->search . '%')
@@ -69,14 +69,14 @@ class ShowClients extends Component
             }
             elseif ($this->searchTerm == 'Standard') {
 
-                $this->clients = \App\Models\Client::where('firstname', 'like', '%' . $this->search . '%')
+                $this->superviseurs = \App\Models\Superviseur::where('firstname', 'like', '%' . $this->search . '%')
                     ->orWhere('lastname', 'like', '%' . $this->search . '%')
                     ->orWhere('pseudo', 'like', '%' . $this->search . '%')
                     ->get();
 
             }else {
 
-                $this->clients = \App\Models\Client::where($this->searchTerm, 'like', '%' . $this->search . '%')
+                $this->superviseurs = \App\Models\Superviseur::where($this->searchTerm, 'like', '%' . $this->search . '%')
                     ->get();
                     
             }
@@ -88,18 +88,8 @@ class ShowClients extends Component
     public function render()
     {
 
-        return view('livewire.show-clients');
+        return view('livewire.show-manage');
 
-            // $sites = \App\Models\Client::all();
-
-        // $sites = \App\Models\Client::where('description', 'like', '%' . $this->search . '%')
-        //     ->orWhere('reference', 'like', '%' . $this->search . '%')
-        //     ->orWhere('localisation', 'like', '%' . $this->search . '%')
-        //     ->get();
-
-        // return view('livewire.show-clients', [
-        //     'clients' => $clients,
-        // ]);
 
     }
 }

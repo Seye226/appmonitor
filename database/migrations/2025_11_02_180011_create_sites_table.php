@@ -16,6 +16,8 @@ return new class extends Migration
 
             $table->string('description');
             $table->string('reference')->unique();
+            
+            $table->string('adresse')->unique();
 
             $table->string('localisation')->unique();
 
@@ -30,7 +32,8 @@ return new class extends Migration
                 // $table->foreignId('client_id')->nullable()->index();
             $table->foreignId('client_id')->index();
 
-            $table->foreignId('origin_superviseur_id')->nullable()->index();
+            // $table->foreignId('origin_superviseur_id')->nullable()->index();
+            $table->foreignId('superviseur_id')->nullable()->index();
 
             $table->timestamps();
         });
