@@ -1,4 +1,9 @@
-<div class="border-4 border-gray-500 ...">
+<!-- <div class="border-4 border-gray-500 ..."> -->
+<!-- <div class="bg-green-500 p-6 lg:p-8 border-4 border-yellow-200"> -->
+<div class="bg-green-200 p-6 lg:p-8 border-4 border-yellow-200">
+    <!-- <div class="bg-stone-500 p-6 lg:p-8 border-4 border-yellow-200"> -->
+<!-- <div class="bg-stone-100 p-6 lg:p-8 border-4 border-yellow-200"> -->
+
 
     <h1 class="border-b-4 border-b-gray-500 m-2 text-gray-500 text-sm leading-relaxed">
         (Mini-View)-Site: {{$mini_site->id}}
@@ -54,13 +59,16 @@
                         <small>
 
                             Actualisé il y'a :
-                                            <strong>{{-- json_encode( $mini_site->postedDatas()->where('mqtt_name', $data_point)->latest()->first()->time ) --}}</strong>
-                                    <strong>{{-- json_encode( $mini_site->postedDatas()->where('mqtt_name', $data_point)->orderBy('date', 'desc')->orderBy('time', 'desc')->first()->time ) --}}</strong>
-                                    <strong>{{-- \Carbon\Carbon::now() --}}</strong>
-                                    <strong>{{-- \Carbon\Carbon::create( $mini_site->postedDatas()->where('mqtt_name', $data_point)->orderBy('date', 'desc')->orderBy('time', 'desc')->first()->date . $mini_site->postedDatas()->where('mqtt_name', $data_point)->orderBy('date', 'desc')->orderBy('time', 'desc')->first()->time ) --}}</strong>
-                            <strong>{{-- \Carbon\Carbon::create( $mini_site->postedDatas()->where('mqtt_name', $data_point)->orderBy('date', 'desc')->orderBy('time', 'desc')->first()->date . $mini_site->postedDatas()->where('mqtt_name', $data_point)->orderBy('date', 'desc')->orderBy('time', 'desc')->first()->time )->diffForHumans() --}}</strong>
+                                                    <strong>{{-- json_encode( $mini_site->postedDatas()->where('mqtt_name', $data_point)->latest()->first()->time ) --}}</strong>
+                                            <strong>{{-- json_encode( $mini_site->postedDatas()->where('mqtt_name', $data_point)->orderBy('date', 'desc')->orderBy('time', 'desc')->first()->time ) --}}</strong>
+                                            <strong>{{-- \Carbon\Carbon::now() --}}</strong>
+                                            <strong>{{-- \Carbon\Carbon::create( $mini_site->postedDatas()->where('mqtt_name', $data_point)->orderBy('date', 'desc')->orderBy('time', 'desc')->first()->date . $mini_site->postedDatas()->where('mqtt_name', $data_point)->orderBy('date', 'desc')->orderBy('time', 'desc')->first()->time ) --}}</strong>
+                                    <strong>{{-- \Carbon\Carbon::create( $mini_site->postedDatas()->where('mqtt_name', $data_point)->orderBy('date', 'desc')->orderBy('time', 'desc')->first()->date . $mini_site->postedDatas()->where('mqtt_name', $data_point)->orderBy('date', 'desc')->orderBy('time', 'desc')->first()->time )->diffForHumans() --}}</strong>
 
-                            <strong>{{$site_topic_status=\Carbon\Carbon::create( $mini_site->postedDatas()->where('mqtt_name', $data_point)->orderBy('date', 'desc')->orderBy('time', 'desc')->first()->date . $mini_site->postedDatas()->where('mqtt_name', $data_point)->orderBy('date', 'desc')->orderBy('time', 'desc')->first()->time )->diffForHumans()}}</strong>
+                            <strong>{{-- $site_topic_status=\Carbon\Carbon::create( $mini_site->postedDatas()->where('mqtt_name', $data_point)->orderBy('date', 'desc')->orderBy('time', 'desc')->first()->date . $mini_site->postedDatas()->where('mqtt_name', $data_point)->orderBy('date', 'desc')->orderBy('time', 'desc')->first()->time )->diffForHumans() --}}</strong>
+
+                            <strong style="display:none;">{{$site_topic_status=\Carbon\Carbon::create( $mini_site->postedDatas()->where('mqtt_name', $data_point)->orderBy('date', 'desc')->orderBy('time', 'desc')->first()->date . $mini_site->postedDatas()->where('mqtt_name', $data_point)->orderBy('date', 'desc')->orderBy('time', 'desc')->first()->time )}}</strong>
+                            <strong>{{$site_topic_status->diffForHumans()}}</strong>
  
                         </small>
                     </div>
@@ -69,7 +77,9 @@
                                 <!-- div style="display: flex;" -->
                                 <!-- <div style="display: flex; md:display: flow;"> -->
                     <div class="{{ $type === 'sites' ? 'xl:flex xl:flex-row ld:flex-col' : '' }}">
+                        
                         HY-HEY-A-VOIR!
+
                     </div>
                     <!-- <div class="xl:flex xl:flex-row ld:flex-col"> -->
                             <!-- <div class="inline-grid"> -->
@@ -97,9 +107,9 @@
                         <div class="m-2 p-2">
                             <p>{{-- json_encode( $mini_site->postedDatas()->where('mqtt_name', $data_point)->latest()->first() ) --}}</p>
                             <!-- <div class="bg-red-100 p-1 rounded-lg w-4"> -->
-                            <div class="bg-red-100 p-1 rounded-lg">
+                            <div class="{{ $site_topic_status->diffInMinutes()>=100 ? 'bg-red-100' : 'bg-green-100'}} p-1 rounded-lg">
                                 i-
-                                {{$site_topic_status}}
+                                {{$site_topic_status->diffForHumans()}}
                             </div>
                         </div>
 

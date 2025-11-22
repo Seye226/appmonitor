@@ -19,6 +19,8 @@ class Client extends Model
         'telephone',
 "user_id",
 
+"created_by_user_id",
+
     ];
 
 

@@ -25,6 +25,7 @@
                     @foreach($mini_client->sites as $site)
 
                         <h1>{{$site->id .' - '. $site->reference .' - '. $site->localisation}}</h1>
+                        
                         <p>
                             {{$site->description }}
                         </p>

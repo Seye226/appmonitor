@@ -1,6 +1,9 @@
-<div class="p-6 lg:p-8 bg-white border-b border-gray-200">
-
-    <h1 class="mt-8 text-2xl font-medium text-gray-900">Liste clients (livewire component)</h1>
+    <!-- <div class="bg-green-400 p-6 lg:p-8 bg-white border-b border-gray-200"> -->
+<!-- <div class="bg-red-200 p-6 lg:p-8 border-4 border-red-500"> -->
+    <!-- <div class="bg-red-400 py-12">     -->
+<div class="bg-gray-100 p-6 lg:p-8 border-4 border-red-500">
+    
+    <h1 class="mt-8 text-2xl font-medium text-gray-900">Liste superviseurs (livewire component)</h1>
 
     <div class="mt-8 text-2xl font-medium text-gray-900">
 
@@ -8,42 +11,59 @@
 
             if($supervisor_id!=null)
             endif
-            Supervisor View - Recherche un client (par nom)
+            
+            Supervisor View - Recherche un superviseur (par nom)
 
-            <div>
-            <h2>Recherche un Client (par nom)</h2>
-            <input id="{{'sc-test'.time()}}" wire:model="search" type="text">
-            <input id="{{'sc-test-bis'.time()}}" wire:model.live="search" type="text">
-<!-- .($supervisor_id??'').'-' -->
-            <input id="{{'sc'.time()}}" wire:model.live.debounce.300ms="search" type="text">
-            <p>Input: {{$search}}</p>
+                <!-- <div> -->
+            <!-- <div style="display: flex;"> -->
+                <!-- <div style="display: inline-flex;"> -->
+                <!-- <div style="display: ruby;"> -->
+                <!-- <div style="display: -webkit-box;"> -->
+                <!-- <div style="display: -webkit-inline-box;"> -->
+            <div class="my-3 grid grid-cols-3 divide-x-3 divide-dashed divide-indigo-500">
+
+                <div>
+                    <h2>Recherche un Superviseur (par nom)</h2>
+        <!-- .($supervisor_id??'').'-' -->
+                    <input id="{{'sm'.time()}}" wire:model.live.debounce.300ms="search" type="text">
+                </div>
+
+                <div>
+                    <h2>searchTermList:</h2>
+                    <select wire:model.live.debounce.300ms="searchTerm" name="searchTerm-SM-Name" id="searchTerm-SM-Id">
+                        @foreach($searchTermList as $term)
+                            <!-- <option wire:click="setSearchTerm('{{--$term--}}')">{{--$term--}}</option> -->
+                            <option value="{{$term}}">{{$term}}</option>
+                        @endforeach
+                    </select>
+
+                    <p>searchTerm: {{$searchTerm}}</p>
+                </div>
+
+                
             </div>
 
             <div>
-                searchTermList
-                <select wire:model.live.debounce.300ms="searchTerm" name="searchTerm-SC-Name" id="searchTerm-SC-Id">
-                    @foreach($searchTermList as $term)
-                        <!-- <option wire:click="setSearchTerm('{{--$term--}}')">{{--$term--}}</option> -->
-                        <option value="{{$term}}">{{$term}}</option>
-                    @endforeach
-                </select>
 
-                <p>searchTerm: {{$searchTerm}}</p>
+                <p>Input: {{$search}}</p>
+
             </div>
+
         </div>
 
     </div>
 
 
-    <h2>Client(s) trouvé(s):</h2>
+    <h2>Superviseur(s) trouvé(s):</h2>
 
 
     <div class="bg-gray-200 bg-opacity-25 grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 p-6 lg:p-8"> 
 
         <!-- <div> -->
 
-                @foreach($clients as $client)
-                <div>
+                @foreach($superviseurs as $superviseur)
+                <!-- <div class="bg-red-100 p-6 lg:p-8 border-dotted border-2 border-red-500"> -->
+                <div class="bg-gray-200 p-6 lg:p-8 border-dotted border-2 border-red-500">
 
                     <div class="flex items-center">
 
@@ -52,15 +72,15 @@
                         </svg>
 
                         <h3 class="ms-3 text-xl font-semibold text-gray-900">
-                            <a href="{{ route('clients.liveclient', $client->id) }}">Client-{{$client->id}} - ref:{{$client->reference}} (Voir details)</a>
+                            <a href="{{ route('manage.livemanage', $superviseur->id) }}">Superviseur-{{$superviseur->id}} - ref:{{$superviseur->reference}} (Voir details)</a>
                         </h3>
 
                     </div>
 
                     <div>
 
-                        <a href="{{ route('clients.liveclient', $client->id) }}" class="{{request()->routeIs('clients.liveclient') ? 'text-indigo-600 underline' : 'text-gray-600 hover:text-indigo-600'}}">
-                            Voir details Client
+                        <a href="{{ route('manage.livemanage', $superviseur->id) }}" class="{{request()->routeIs('manage.livemanage') ? 'text-indigo-600 underline' : 'text-gray-600 hover:text-indigo-600'}}">
+                            Voir details Superviseur
                         </a>
                         <a href="">Voir archives</a>
 
@@ -73,8 +93,8 @@
   <div></div>
 </div>
 
-<h1>Show-clients-TYPE:{{$type}}</h1>
-<livewire:inside.miniclient :type="$type" :mini_client="$client" :wire:key="$client->id">
+<h1>Show-superviseurs-TYPE:{{$type}}</h1>
+<!-- livewire:inside.miniclient :type="$type" :mini_client="$superviseur" :wire:key="$superviseur->id"/ -->
 
 
 

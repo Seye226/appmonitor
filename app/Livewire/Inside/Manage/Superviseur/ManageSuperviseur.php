@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Inside\Manage\Superviseur;
 
 use Livewire\Component;
 
@@ -10,7 +10,7 @@ use Livewire\Attributes\Layout;
 
 // #[Layout('layouts.app') ]
 
-class LiveClient extends Component
+class ManageSuperviseur extends Component
 {
     public $count;
 
@@ -30,7 +30,7 @@ class LiveClient extends Component
 
         $this->count++;
 
-        return view('livewire.live-client')
+        return view('livewire.inside.manage.superviseur.manage-superviseur')
             ->layout('layouts.app');
 
 

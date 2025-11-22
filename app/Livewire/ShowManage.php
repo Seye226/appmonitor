@@ -23,10 +23,16 @@ class ShowManage extends Component
         // 'description',
         // 'localisation',
 
-        'firstname',
-        'lastname',
         'pseudo',
-        'adresse',
+
+
+            // $table->foreignId('user_id')->nullable()->index();
+        'user_id',
+            // $table->foreignId('role_id')->nullable()->index();
+        // 'role_id',
+
+
+
         'telephone',
     ];
 
@@ -59,19 +65,16 @@ class ShowManage extends Component
 
             if ($this->searchTerm == 'All' || $this->searchTerm == '') {
 
-                $this->superviseurs = \App\Models\Superviseur::where('firstname', 'like', '%' . $this->search . '%')
-                    ->orWhere('lastname', 'like', '%' . $this->search . '%')
-                    ->orWhere('pseudo', 'like', '%' . $this->search . '%')
-                    ->orWhere('adresse', 'like', '%' . $this->search . '%')
+                $this->superviseurs = \App\Models\Superviseur::where('pseudo', 'like', '%' . $this->search . '%')
                     ->orWhere('telephone', 'like', '%' . $this->search . '%')
+                    ->orWhere('user_id', 'like', '%' . $this->search . '%')
                     ->get();
 
             }
             elseif ($this->searchTerm == 'Standard') {
 
-                $this->superviseurs = \App\Models\Superviseur::where('firstname', 'like', '%' . $this->search . '%')
-                    ->orWhere('lastname', 'like', '%' . $this->search . '%')
-                    ->orWhere('pseudo', 'like', '%' . $this->search . '%')
+                $this->superviseurs = \App\Models\Superviseur::where('pseudo', 'like', '%' . $this->search . '%')
+                    ->orWhere('telephone', 'like', '%' . $this->search . '%')
                     ->get();
 
             }else {

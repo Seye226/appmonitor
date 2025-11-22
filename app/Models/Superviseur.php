@@ -25,10 +25,11 @@ class Superviseur extends Model
         return $this->belongsTo(\App\Models\User::class, 'user_id');
     }
 
-            // public function Clients()
-            // {
-            //     return $this->hasMany(\App\Models\Client::class, 'superviseur_id');
-            // }
+    public function Clients()
+    {
+        // return $this->hasMany(\App\Models\Client::class, 'superviseur_id');
+        return $this->hasMany(\App\Models\Client::class, 'created_by_user_id');
+    }
 
     public function Sites()
     {

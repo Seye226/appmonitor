@@ -1,10 +1,17 @@
-<div class="p-6 lg:p-8 bg-white border-b border-gray-200">
+    <!-- <div class="p-6 lg:p-8 bg-white border-4 border-slate-200"> -->
+    <!-- <div class="bg-green-100 p-6 lg:p-8 border-4 border-slate-200"> -->
+<!-- <div class="bg-green-100 my-3 p-6 lg:p-8 border-4 border-green-500"> -->
+<div class="bg-green-100 my-6 p-6 lg:p-8 border-4 border-green-500">
 
-    <h1>
+    <h1 class="bg-green-500 p-6 lg:p-8 bg-white border-l-4 border-slate-200">
+        {{$sub_title}}
+    </h1>
+
+    <h1 class="bg-green-500 p-6 lg:p-8 bg-white border-l-4 border-slate-200">
         Show-sites-TYPE: {{$type}}
     </h1>
 
-    <h1 class="mt-8 text-2xl font-medium text-gray-900">
+    <h1 class="border-b-4 border-slate-200 mt-8 text-2xl font-medium text-gray-900">
         Liste sites
         <strong>
         @if($client_id)
@@ -15,6 +22,8 @@
         </strong>
         (livewire component)
     </h1>
+
+
     <p>
         @if($client_id)
             Nombre de <strong>site(s)</strong> du Client: <strong>{{$sites->count()}}</strong>
@@ -98,7 +107,10 @@
         <!-- <div> -->
 
                 @foreach($sites as $site)
-                <div>
+                <!-- <div> -->
+                <!-- <div class="border-4 border-slate-500 flex items-center"> -->
+                <!-- <div class="border-4 border-slate-500"> -->
+                <div class="border-4 border-dotted border-green-500">
 
                     <div class="flex items-center">
 
@@ -122,6 +134,7 @@
                     </div>
 
 
+                    
 <livewire:inside.minisite :type="$type" :mini_site="$site" :wire:key="$site->id.'-'.$viewoptionselected.'-'.time()">
 
 

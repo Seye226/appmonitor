@@ -229,6 +229,7 @@ class DatabaseSeeder extends Seeder
                         // "created_at"=>"2021-11-27 03:01:14",
                         // "updated_at"=>"2021-11-27 03:01:14"
 
+                    "created_by_user_id"=>1 ,
                 ],
                 [
                     'firstname'=>"Konate" ,//);
@@ -242,6 +243,8 @@ class DatabaseSeeder extends Seeder
 
                     'user_id'=>4 ,//)->unique();
 
+                    "created_by_user_id"=>1 ,
+
                 ],
                 [
                     'firstname'=>"Traore" ,//);
@@ -254,6 +257,8 @@ class DatabaseSeeder extends Seeder
                     'telephone'=>"13 98 94 55" ,//)->unique();
 
                     'user_id'=>5 ,//)->unique();
+
+                    "created_by_user_id"=>2 ,
 
                 ],
 
@@ -270,6 +275,42 @@ class DatabaseSeeder extends Seeder
 
                     'user_id'=>null ,//)->unique();
                     // 'user_id'=>5 ,//)->unique();
+
+                    "created_by_user_id"=>6 ,
+
+                ],
+
+                [
+                    'firstname'=>"Kaboré" ,//);
+                    'lastname'=>"Alain" ,//);
+
+                    'pseudo'=>"KaboréAlain" ,//)->unique();
+                    // $table->foreignId('user_id')->nullable()->index();
+
+                    'adresse'=>"PoTnggh fz" ,//)->unique();
+                    'telephone'=>"29 91 94 55" ,//)->unique();
+
+                    'user_id'=>null ,//)->unique();
+                    // 'user_id'=>5 ,//)->unique();
+
+                    "created_by_user_id"=>7 ,
+
+                ],
+
+                [
+                    'firstname'=>"Palinfo" ,//);
+                    'lastname'=>"Honoré" ,//);
+
+                    'pseudo'=>"PalinfoHonoré" ,//)->unique();
+                    // $table->foreignId('user_id')->nullable()->index();
+
+                    'adresse'=>"yujnnggh fz" ,//)->unique();
+                    'telephone'=>"34 23 94 55" ,//)->unique();
+
+                    'user_id'=>null ,//)->unique();
+                    // 'user_id'=>5 ,//)->unique();
+
+                    "created_by_user_id"=>2 ,
 
                 ],
 

@@ -17,12 +17,16 @@ class ShowSites extends Component
         'Component'=>""
     ];
 
+    // public $sub_title;
+    public $sub_title='';
+    
     public $type;
 
     public $search = '';
     public $searchTerm = '';
 
     public $client_id;
+    public $superviseur_id;
 
     public $searchTermList = [
         'All',
@@ -38,6 +42,7 @@ class ShowSites extends Component
     
     public function mount()
     {
+        // dd("hey ici ShowSites mount");
         // $this->sites = \App\Models\Site::all();
 
         $this->updatedSearch();
@@ -93,11 +98,36 @@ class ShowSites extends Component
         //     // $this->sites=$this->sites->where("client_id",$this->client_id)->get();
 
         // dd(Auth()->user());
-        if ($this->client_id)
+        if ($this->client_id){
             $this->sites=$this->sites->where("client_id",$this->client_id);
-        else {
+
+            $this->sub_title="BY CLIENT";
+
+        }
+        // else {
+        //     # code...
+        // }
+        // if ($this->superviseur_id && $this->client_id) {
+        elseif ($this->superviseur_id && $this->client_id) {
+
+            dd("hey ici superviseur_id AND client_id is not null: ".$this->superviseur_id);
+            $this->sites=$this->sites->where("superviseur_id",$this->superviseur_id)->where("client_id",$this->client_id);
+            $this->sub_title="BY CLIENT & SUPERVISEUR";
+
             # code...
         }
+        elseif ($this->superviseur_id) {
+            // dd("hey ici superviseur_id is not null: ".$this->superviseur_id);
+            $this->sites=$this->sites->where("superviseur_id",$this->superviseur_id);
+            $this->sub_title="BY SUPERVISEUR";
+
+            # code...
+        }
+        else {
+            // dd("hey ici superviseur_id is null");
+            # code...
+        }
+
 
         return view('livewire.show-sites');
 

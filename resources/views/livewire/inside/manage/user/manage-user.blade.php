@@ -5,7 +5,7 @@
                 
                 <div class="border-4 border-indigo-500 ...">
 
-                    <h1>Description du client Id n°:{{$clientId}}</h1>
+                    <h1>MANAGE - Description du user Id n°:{{$clientId}}</h1>
                 
                     <p>
                         Client: {{$client->id.' - '.$client->firstname.' - '.$client->lastname}}

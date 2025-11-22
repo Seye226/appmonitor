@@ -25,7 +25,9 @@ return new class extends Migration
 
             
             $table->foreignId('user_id')->nullable()->index();
+
             // $table->foreignId('superviseur_id')->nullable()->index();
+            $table->foreignId('created_by_user_id')->nullable()->index();
 
 
             $table->timestamps();
