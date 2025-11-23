@@ -10,6 +10,14 @@ use App\Models\Topic;
 class Minisite extends Component
 {
 
+        // public $icon_model_size = '15';
+        // public $icon_model_size = '10';
+    public $icon_model_size = '48';
+
+    // public $icon_sub_size = "10";
+    public $icon_sub_size = "8";
+    // public $icon_sub_size = "6";
+
     public $type;
 
     // public $site;

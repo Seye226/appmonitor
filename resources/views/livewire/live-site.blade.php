@@ -34,8 +34,10 @@
                     @foreach($site->postedDatas()->orderBy('date', 'desc')->orderBy('time', 'desc')->limit(2)->get() as $postedData)
                         <div>
 
+
                             <x-compo-plugs::site-info>
 
+                            
                                 <div>
 
                                     Posted Data ID: {{$postedData->id}}

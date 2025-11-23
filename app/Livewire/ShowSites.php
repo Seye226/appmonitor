@@ -6,13 +6,17 @@ use Livewire\Component;
 
 class ShowSites extends Component
 {
-    public $viewoptionselected="Grid";
+    // public $viewoptionselected="Grid";
+    // public $viewoptionselected="Affiché en Ligne";
+    public $viewoptionselected;
     public $viewoptions=[
-        'Grid'=>"grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 p-6 lg:p-8",
-        // 'Grid'=>"grid grid-cols-1 xl:grid-cols-2 gap-6 lg:gap-8 p-6 lg:p-8",
+        // 'Ligne'=>"grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 p-6 lg:p-8",
+        //     // 'Ligne'=>"grid grid-cols-1 xl:grid-cols-2 gap-6 lg:gap-8 p-6 lg:p-8",
+        'Affiché en Ligne'=>"grid grid-cols-1 lg:grid-cols-2 gap-3 lg:gap-4 p-3 lg:p-4",
 
-        // 'List'=>"grid grid-cols-1 xl:grid-cols-2 gap-6 lg:gap-8 p-6 lg:p-8",
-        'List'=>"grid grid-cols-1 gap-6 lg:gap-8 p-6 lg:p-8",
+        //     // 'List'=>"grid grid-cols-1 xl:grid-cols-2 gap-6 lg:gap-8 p-6 lg:p-8",
+        // 'Colonne'=>"grid grid-cols-1 gap-6 lg:gap-8 p-6 lg:p-8",
+        'Affiché en Colonne'=>"grid grid-cols-1 gap-3 lg:gap-4 p-3 lg:p-4",
 
         'Component'=>""
     ];
@@ -44,7 +48,11 @@ class ShowSites extends Component
     {
         // dd("hey ici ShowSites mount");
         // $this->sites = \App\Models\Site::all();
-
+        if ($this->type==="sites") {
+            $this->viewoptionselected="Affiché en Ligne";
+        }else {
+            $this->viewoptionselected="Affiché en Colonne";
+        }
         $this->updatedSearch();
     }
 

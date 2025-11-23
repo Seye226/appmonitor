@@ -1,7 +1,8 @@
-    <!-- <div class="p-6 lg:p-8 bg-white border-4 border-slate-200"> -->
-    <!-- <div class="bg-green-100 p-6 lg:p-8 border-4 border-slate-200"> -->
-<!-- <div class="bg-green-100 my-3 p-6 lg:p-8 border-4 border-green-500"> -->
-<div class="bg-green-100 my-6 p-6 lg:p-8 border-4 border-green-500">
+        <!-- <div class="p-6 lg:p-8 bg-white border-4 border-slate-200"> -->
+        <!-- <div class="bg-green-100 p-6 lg:p-8 border-4 border-slate-200"> -->
+    <!-- <div class="bg-green-100 my-3 p-6 lg:p-8 border-4 border-green-500"> -->
+<!-- <div class="bg-green-100 my-6 p-6 lg:p-8 border-4 border-green-500"> -->
+<div class="bg-green-100 my-6 p-3 lg:p-4 border-4 border-green-500">
 
     <h1 class="bg-green-500 p-6 lg:p-8 bg-white border-l-4 border-slate-200">
         {{$sub_title}}
@@ -49,9 +50,6 @@
 
             <div>
             <h2>Recherche un site (par reference)</h2>
-            <input id="{{'st-test'.($client_id??'').'-'.time()}}" wire:model="search" type="text">
-            <input id="{{'st-test-bis'.($client_id??'').'-'.time()}}" wire:model.live="search" type="text">
-
             <input id="{{'st'.($client_id??'').'-'.time()}}" wire:model.live.debounce.300ms="search" type="text">
             <p>Input: {{$search}}</p>
             </div>
@@ -72,37 +70,46 @@
 
     </div>
 
+    <div class="bg-gray-200 border-2 border-gray-500 bg-opacity-25" >
 
-    <h2>Site(s) trouvé(s):</h2>
+        <h2>Site(s) trouvé(s):</h2>
 
-    <select wire:model.live.debounce.300ms="viewoptionselected" name="viewoption-SS-Name-{{$client_id??''}}" id="viewoption-SS-Id-{{$client_id??''}}">
-        @foreach($viewoptions as $optionKey=>$option)
-            <option value="{{$optionKey}}">{{$optionKey}}</option>
-        @endforeach
-    </select>
-    viewoptionselected: {{ $viewoptionselected }}
+        @if($type === 'sites' || $type === 'superviseur_manage_page')
 
-    @if($viewoptionselected == 'Grid')
-        <p>Affichage en mode Grid</p>
+            <select wire:model.live.debounce.300ms="viewoptionselected" name="viewoption-SS-Name-{{$client_id??''}}" id="viewoption-SS-Id-{{$client_id??''}}">
+                @foreach($viewoptions as $optionKey=>$option)
+                    <option value="{{$optionKey}}">{{$optionKey}}</option>
+                @endforeach
+            </select>
 
-    @elseif($viewoptionselected == 'List')
-        <p>Affichage en mode List</p>
+            <p>
+                viewoptionselected: {{ $viewoptionselected }}
+            </p>
 
-    @else
-        <p>Affichage par défaut (Grid)</p>
+            @if($viewoptionselected == 'Grid')
+                <p>Affichage en mode Grid</p>
 
-    @endif
+            @elseif($viewoptionselected == 'List')
+                <p>Affichage en mode List</p>
+
+            @else
+                <p>Affichage par défaut (Grid)</p>
+
+            @endif
 
 
-    {{$viewoptions[$viewoptionselected]}}
+            {{--$viewoptions[$viewoptionselected]--}}
 
-                    <!-- <div class="bg-gray-200 bg-opacity-25 grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 p-6 lg:p-8">  -->
-                <!-- <div class="bg-gray-200 bg-opacity-25 grid grid-cols-1 xl:grid-cols-2 gap-6 lg:gap-8 p-6 lg:p-8">  -->
-        <!-- <div class="bg-gray-200 bg-opacity-25 {{-- $viewoptions[$viewoptionselected] --}}"> -->
-    <!-- Force List view IF-NOT PAGE-type-Clients-Interface-(URL:/clients) -->
-    <div class="bg-gray-200 bg-opacity-25 {{ $type === 'sites' ? $viewoptions[$viewoptionselected] : $viewoptions['List'] }}" >
-    <!-- </div> -->
-    <!-- <div class="bg-gray-200 bg-opacity-25"> -->
+        @endif
+
+                        <!-- <div class="bg-gray-200 bg-opacity-25 grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 p-6 lg:p-8">  -->
+                    <!-- <div class="bg-gray-200 bg-opacity-25 grid grid-cols-1 xl:grid-cols-2 gap-6 lg:gap-8 p-6 lg:p-8">  -->
+            <!-- <div class="bg-gray-200 bg-opacity-25 {{-- $viewoptions[$viewoptionselected] --}}"> -->
+        <!-- Force List view IF-NOT PAGE-type-Clients-Interface-(URL:/clients) -->
+        <div class="bg-gray-200 bg-opacity-25 {{ ($type === 'sites'|| $type === 'superviseur_manage_page') ? $viewoptions[$viewoptionselected] : $viewoptions['Affiché en Colonne'] }}" >
+        <!-- <div class="bg-gray-200 bg-opacity-25 {{-- $viewoptions[$viewoptionselected] --}}" > -->
+        <!-- </div> -->
+        <!-- <div class="bg-gray-200 bg-opacity-25"> -->
 
         <!-- <div> -->
 
@@ -142,7 +149,7 @@
                 </div>
                 @endforeach
 
-        <!-- </div> -->
+        </div>
             
     </div>
 

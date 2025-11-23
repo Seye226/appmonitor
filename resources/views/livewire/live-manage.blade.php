@@ -43,7 +43,7 @@
                 </div>
 
                 <div>
-                    <livewire:show-sites :superviseur_id="$superviseur->id">
+                    <livewire:show-sites :superviseur_id="$superviseur->id" :type="'superviseur_manage_page'">
 
                     <!-- livewire:show-clients :type="'dashbord'"/ -->
 
