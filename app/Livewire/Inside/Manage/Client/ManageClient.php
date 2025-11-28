@@ -18,11 +18,30 @@ class ManageClient extends Component
 
     public $clientId;
     public $client;
-    public function mount($clientId)
+
+        public $pageType;
+    // public function mount($clientId)
+    public function mount($clientId,$pageType)
     {
         $this->clientId = $clientId;
-        $this->client = Client::find($clientId);
+        $this->pageType = $pageType;
+
+        // $this->client = Client::find($clientId);
+
+        // dd("pageType",$pageType);
+        // if ($pageType==="Edit") { //"client-view"
+        if ($pageType==="Create") { //"client-view"
+            # code...
+            $this->client = new Client;
+
+        }else {
+            # code...
+            $this->client = Client::find($clientId);
+
+        }
+
     }
+
 
     public function render()
     {

@@ -30,12 +30,44 @@
                     <div>
                    
                         <x-button wire:click="openModal">
-                            AAA-New {{ucfirst($modeltype)}} (openModal)
+                            New {{ucfirst($modeltype)}} (openModal)
                         </x-button> 
 
                         <x-button wire:click="openManageModelModal(null,'Create')">
-                            AAA-Créer un nouveau {{ucfirst($modelname)}}
+                            Créer un nouveau {{ucfirst($modelname)}}
                         </x-button>
+
+                        
+                        <div>
+                            <!-- x-dialog-modal id="manage-create-{{ $modeltype }}-modal" :title="__('manage.managecreateview-'.$modeltype.'s')" -->
+                            <x-dialog-modal id="manage-create-{{ $modeltype }}-modal" wire:model="manageCreateModelModal">
+                                <x-slot name="title">
+                                    Adding {{ $modeltype }}
+                                </x-slot>
+                                <x-slot name="content">
+
+                                    dialog-modal-content
+
+                                    <form action="{{ route('manage.managecreateview.post', 'frgthy') }}" method="post">
+                                        @csrf
+
+                                        <x-input id="nom" name="nom" wire:model="nom"></x-input>
+
+                                        <button type="submit" class="ml-4 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150">
+                                            {{ __('manage-create-'.$modeltype) }}
+                                        </button>
+                                    </form>
+
+
+                                </x-slot>
+                                <x-slot name="footer">
+                                    Adding-{{ $modeltype }}-footer
+                                    <x-button wire:click="$toggle('manageCreateModelModal')" wire:loading.attr="disabled">Cancel</x-button>
+                                </x-slot>
+                                {{ __('manage.managecreateview-'.$modeltype.'s') }}
+                            </x-dialog-modal>
+                        </div>
+
 
                     </div>
                         
@@ -59,7 +91,7 @@
 
                                     <div>
 
-
+                                        <x-input id="nom" name="nom" wire:model="nom"></x-input>
                                         <div>
 
                                             @if($manageModelModal)
@@ -75,71 +107,29 @@
 
                                                     @endforeach
 
+                                                <div>
+
                                                 </div>
 
+                                                    @if($modeltype==="App\Models\UserB")
+                                                    <livewire:inside.manage.user.manage-user :key="time()" userId="{{$manageModelModal->id}}" pageType="{{$pageType}}" />
+                                                    @elseif($modeltype==="App\Models\ClientB")
+                                                    <livewire:inside.manage.client.manage-client :key="time()" clientId="{{$manageModelModal->id}}" pageType="{{$pageType}}" />
+                                                    @elseif($modeltype==="App\Models\SiteB")
+                                                    <livewire:inside.manage.site.manage-site :key="time()" siteId="{{$manageModelModal->id}}" pageType="{{$pageType}}" />
+                                                    @elseif($modeltype==="App\Models\SuperviseurBBB")
+                                                    <livewire:inside.manage.superviseur.manage-superviseur :key="time()" superviseurId="{{$manageModelModal->id}}" pageType="{{$pageType}}" />
+                                                    @else
 
-                                                <!-- -----DEBUT-le27/11/25-FUSION FORM-UNIVERSEL!!------- -->
+                                                    <h3>Nom du Model: {{$modelname}}<strong>::Class</strong> </h3>
+                                                    @livewire('inside.manage.'.$modelname.'.manage-'.$modelname,[$modelname.'Id'=>$manageModelModal->id, 'pageType'=>$pageType])
 
-
-                                                @if($pageType === "Edit" || $pageType === "Create" )
-
-                                                    <!-- form action="{{-- route('manage.managecreateview.post', 'frgthy') --}}" method="POST" -->
-                                                    <form wire:submit.prevent="submit" action="{{ route('manage.managecreateview.post', 'frgthy') }}" method="POST">
-
-                                                        @csrf
-
-                                                        <p>nom:</p>
-                                                        <x-input id="nom" name="nom" wire:model="nom"></x-input>
-                                                        @error('nom') <span>{{$message}}</span> @enderror
-
-
-                                                        <ul>
-                                                            foreach($modelInputArray as $modelInput=>$inputValue)
-                                                            @foreach($manageModelModal->getFillable() as $modelInput)
-                                                            <li class="p-2 m-2 border-1 border-gray-500 bg-gray-300" >
-                                                                <p><strong>{{ucfirst($modelInput)}}</strong> :</p>
-
-                                                                <div class="p-2 m-2 border-1 border-gray-500">
-                                                                @if( ($pageType === "Edit") && isset($superviseur->id))
-                                                                    <x-input id="{{$modelInput}}" name="{{$modelInput}}" wire:model="modelInputArray.{{$modelInput}}"></x-input>
-                                                                    @error('modelInputArray.'.$modelInput) <span>{{$message}}</span> @enderror
-                                                                @else
-                                                                    <x-input id="{{$modelInput}}" name="{{$modelInput}}" wire:model="modelInputArray.{{$modelInput}}"></x-input>
-                                                                    @error('modelInputArray.'.$modelInput) <span>{{$message}}</span> @enderror
-
-                                                                @endif
-                                                                </div>
-
-                                                            </li>
-                                                            @endforeach
-                                                        </ul>
-
-                                                        <button type="submit" class="ml-4 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150">
-                                                            {{ __('Enregister') }}
-                                                        </button>
-                                                    </form>
-
-                                                @else
-
-
-                                                    <div>
-
-                                                        <h3>Nom du Model: {{$modelname}}<strong>::Class</strong> </h3>
-                                                        @livewire('inside.manage.'.$modelname.'.manage-'.$modelname,[$modelname.'Id'=>$manageModelModal->id, 'pageType'=>$pageType])
-
-                                                    </div>
-
-
-                                                @endif
-
-
-                                                <!-- -------END-DEBUT-le27/11/25-FUSION FORM-UNIVERSEL!!------ -->
-
-
+                                                    @endif
+                                                </div>
                                             @else
                                                 No {{ucfirst($modeltype)}} Selected
                                             @endif
-                                        </div>
+                                        </p>
 
                                         <button type="submit" class="ml-4 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150">
                                             {{ __('manage-model-'.$modeltype) }}

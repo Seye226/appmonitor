@@ -90,7 +90,6 @@
                 <h4 class="border-2 border-green-500 flex flex-wrap gap-3">
 
 
-
                     <p>
                         <svg class="bi d-block mx-auto mb-1" width="{{$icon_model_size}}" height="{{$icon_model_size}}"><use xlink:href="#{{$data_point}}"/></svg>
                     </p>

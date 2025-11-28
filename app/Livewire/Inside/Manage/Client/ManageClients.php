@@ -18,6 +18,14 @@ class ManageClients extends Component
 
     public $clients;
 
+    public $modelclass;
+    public function mount(){
+
+        $this->modelclass = Client::class;
+
+    }
+
+
     // public $clientId;
     // public $client;
     // public function mount($clientId)
@@ -53,5 +61,5 @@ class ManageClients extends Component
             // $this->manageCreateUserModal = true;
         }
 
-        
+
 }

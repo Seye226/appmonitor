@@ -14,6 +14,7 @@
             
             Supervisor View - Recherche un superviseur (par nom)
 
+            
                 <!-- <div> -->
             <!-- <div style="display: flex;"> -->
                 <!-- <div style="display: inline-flex;"> -->

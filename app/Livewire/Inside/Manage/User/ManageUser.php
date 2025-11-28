@@ -4,7 +4,7 @@ namespace App\Livewire\Inside\Manage\User;
 
 use Livewire\Component;
 
-use App\Models\Client;
+use App\Models\User;
 
 use Livewire\Attributes\Layout;
 
@@ -16,17 +16,33 @@ class ManageUser extends Component
 
     public $thesearch;
 
-    public $clientId;
-    public $client;
-    public function mount($clientId)
+    public $userId;
+    public $user;
+
+    public $pageType;
+    public function mount($userId,$pageType)
     {
-        $this->clientId = $clientId;
-        $this->client = Client::find($clientId);
+        $this->userId = $userId;
+        $this->pageType = $pageType;
+
+        // $this->user = User::find($userId);
+        // dd("pageType",$pageType);
+        // if ($pageType==="Edit") { //"user-view"
+        if ($pageType==="Create") { //"user-view"
+            # code...
+            $this->user = new User;
+
+        }else {
+            # code...
+            $this->user = User::find($userId);
+
+        }
+
     }
 
     public function render()
     {
-        // return view('livewire.live-client');
+        // return view('livewire.live-user');
 
         $this->count++;
 

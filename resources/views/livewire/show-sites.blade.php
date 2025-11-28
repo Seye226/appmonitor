@@ -55,7 +55,7 @@
             </div>
 
             <div>
-                searchTermList
+                <h1>Choix du <strong>Terme</strong> de recherge (searchTermList)</h1>
                 <select wire:model.live.debounce.300ms="searchTerm" name="searchTermSiteName-{{$client_id??''}}" id="searchTermSiteId-{{$client_id??''}}">
                     @foreach($searchTermList as $ct=>$term)
                         <option value="{{$term}}">{{$term}}</option>

@@ -18,7 +18,7 @@
                     </p>
                 </div>
 
-                <livewire:inside.plugs.manage-models :modeltype="'site'" />
+                <livewire:inside.plugs.manage-models :modeltype="$modelclass" />
 
             </div>
         </div>

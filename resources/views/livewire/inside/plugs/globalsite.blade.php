@@ -21,7 +21,6 @@
                         <div>
 
 
-
                             Posted Data ID: {{$postedData->id}}
                             - {{ $postedData->mqtt_name }}
                             - {{ $postedData->value }}

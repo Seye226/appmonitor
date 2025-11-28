@@ -19,7 +19,7 @@
                     </p>
                 </div>
 
-                <livewire:inside.plugs.manage-models :modeltype="'superviseur'" />
+                <livewire:inside.plugs.manage-models :modeltype="$modelclass" />
 
             </div>
         </div>

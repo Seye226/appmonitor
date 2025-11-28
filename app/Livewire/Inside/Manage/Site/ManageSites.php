@@ -17,6 +17,13 @@ class ManageSites extends Component
     public $thesearch;
     public $sites;
 
+    public $modelclass;
+    public function mount(){
+
+        $this->modelclass = Site::class;
+
+    }
+
     // public $clientId;
     // public $client;
     // public function mount($clientId)
@@ -52,5 +59,5 @@ class ManageSites extends Component
             // $this->manageCreateUserModal = true;
         }
 
-        
+
 }

@@ -18,6 +18,14 @@ class ManageSuperviseurs extends Component
     public $thesearch;
     public $superviseurs;
 
+    public $modelclass;
+    public function mount(){
+
+        $this->modelclass = Superviseur::class;
+
+    }
+
+
     // public $clientId;
     // public $client;
     // public function mount($clientId)
@@ -52,5 +60,5 @@ class ManageSuperviseurs extends Component
             dd('here');
             // $this->manageCreateUserModal = true;
         }
-        
+
 }

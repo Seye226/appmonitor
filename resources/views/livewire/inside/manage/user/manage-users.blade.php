@@ -25,7 +25,7 @@
                     </x-nav-link>
                 </div>
 
-                <livewire:inside.plugs.manage-models :modeltype="'user'" />
+                <livewire:inside.plugs.manage-models :modeltype="$modelclass" />
 
             </div>
         </div>

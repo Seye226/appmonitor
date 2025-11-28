@@ -18,6 +18,13 @@ class ManageUsers extends Component
     // public $users;
     public $users=[];
 
+    public $modelclass;
+    public function mount(){
+
+        $this->modelclass = User::class;
+
+    }
+
         public $manageCreateUserModal = false;
 
         public $manageEditUserModal = false;

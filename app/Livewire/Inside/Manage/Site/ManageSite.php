@@ -4,7 +4,7 @@ namespace App\Livewire\Inside\Manage\Site;
 
 use Livewire\Component;
 
-use App\Models\Client;
+use App\Models\Site;
 
 use Livewire\Attributes\Layout;
 
@@ -16,17 +16,36 @@ class ManageSite extends Component
 
     public $thesearch;
 
-    public $clientId;
-    public $client;
-    public function mount($clientId)
+    public $siteId;
+    public $site;
+            public $pageType;
+
+    // public function mount($siteId)
+    public function mount($siteId,$pageType)
     {
-        $this->clientId = $clientId;
-        $this->client = Client::find($clientId);
+        $this->siteId = $siteId;
+        // $this->site = Site::find($siteId);
+        $this->pageType = $pageType;
+
+        // $this->site = Site::find($siteId);
+
+        // dd("pageType",$pageType);
+        // if ($pageType==="Edit") { //"site-view"
+        if ($pageType==="Create") { //"site-view"
+            # code...
+            $this->site = new Site;
+
+        }else {
+            # code...
+            $this->site = Site::find($siteId);
+
+        }
+
     }
 
     public function render()
     {
-        // return view('livewire.live-client');
+        // return view('livewire.live-site');
 
         $this->count++;
 
@@ -34,9 +53,9 @@ class ManageSite extends Component
             ->layout('layouts.app');
 
 
-    return view('livewire.live-client')
+    return view('livewire.live-site')
         ->layout('layouts.app')
-        ->slot('clients');
+        ->slot('sites');
 
 
     }

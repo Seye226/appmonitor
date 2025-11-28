@@ -21,7 +21,7 @@
                 </div>
 
 
-                <livewire:inside.plugs.manage-models :modeltype="'client'" />
+                <livewire:inside.plugs.manage-models :modeltype="$modelclass" />
 
 
             </div>
