@@ -111,7 +111,7 @@
                                                                 @endif
                                                                 </div>
 
-                                                                <p>TEST: {{-- isset($modelInputArray[$modelInput]) ? $modelInputArray[$modelInput] : ''--}}{{json_encode($modelInputArray)}}</p>
+                                                                <p>TEST: {{ isset($modelInputArray[$modelInput]) ? $modelInputArray[$modelInput] : ''}}</p>
 
                                                             </li>
                                                             @endforeach

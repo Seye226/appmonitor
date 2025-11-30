@@ -17,6 +17,10 @@ use Livewire\Attributes\Layout;
 
 // #[Layout('layouts.app') ]
 
+use App\Livewire\Forms\SuperviseurForm;
+use App\Livewire\Forms as FormObjs;
+use Livewire\Form;
+
 class ManageModels extends Component
 {
     public $count;
@@ -42,6 +46,7 @@ class ManageModels extends Component
             //     $this->client = Client::find($clientId);
             // }
     public $modelname;
+public $modelValidationFields;
     public function mount($modeltype){
         // dd("modeltype",$modeltype);
         
@@ -66,7 +71,111 @@ class ManageModels extends Component
             // );
         //----END-NEW--A-le-27/11/25-----
 
+            // $this->modelValidationFields = [
+
+            //     "modelInputArray.pseudo"=>"required",
+
+            //     // "modelInputArray.telephone"=>"required|numeric|min:6|max:10",
+            //     "modelInputArray.telephone"=>"required|numeric",
+
+            //     "modelInputArray.user_id"=>"required|exists:users,id",
+
+            // ];
+
+                // $manageModel = new $this->modeltype;
+                //         // $manageModel = $this->modeltype::find(1);
+
+                // dd(
+                //     "this->modeltype",
+                //     $this->modeltype,
+                //     // $this->modeltype::getFillable(),
+                //     (new $this->modeltype),
+                //     (new $this->modeltype)->getFillable(),
+
+
+                //     // "manageModelModal",
+                //     // $this->manageModelModal,
+                //     // // $this->manageModelModal::getFillable(),
+
+                //     // "manageModel",
+                //     // $manageModel,
+                //     // $manageModel->getFillable(),
+
+                // );
+foreach ((new $this->modeltype)->getFillable() as $inputname) {
+    # code...
+    $this->modelValidationFields["modelInputArray.".$inputname]="required";
+}
+        // dd(
+        //     "this->modelValidationFields",
+        //     $this->modelValidationFields,
+        // );
+
+
+// $formName="App\\Livewire\\Forms\\".ucfirst($this->modelname)."Form";
+            //     //     // $formName="\\App\\Livewire\\Forms\\".ucfirst($this->modelname)."Form";
+            // $formName="Forms\\".ucfirst($this->modelname)."Form";
+        // $formName="FormObjs\\".ucfirst($this->modelname)."Form";
+            // $formName=ucfirst($this->modelname)."Form";
+
+        // $this->modelInputArray = $formName;
+            // $this->modelInputArray = $formName::class;
+            // $this->modelInputArray = $formName::form;
+        // $this->modelInputArray = new Form($formName);
+            // $this->modelInputArray = new SuperviseurForm;
+            // $this->modelInputArray = new SuperviseurForm();
+            
+        // $this->modelInputArray = new $formName();
+        // $this->modelInputArray = new $formName;
+        // $this->modelInputArray = new $formName(new $this->modeltype);
+// $this->modelInputArray = $this->superviseurform;
+    // dd(
+    //     $this->superviseurform,
+    //     // $this->superviseurform->rules()
+    // );
+    // $this->modelValidationFields = $this->superviseurform->rules();
+if ($this->modelname==="superviseur") {
+    $this->modelInputArray = $this->superviseurform;
+}elseif ($this->modelname==="site") {
+    $this->modelInputArray = $this->siteform;
+}elseif ($this->modelname==="user") {
+    $this->modelInputArray = $this->userform;
+}elseif ($this->modelname==="client") {
+    $this->modelInputArray = $this->clientform;
+}else {
+    $this->modelInputArray = [];
+}
+        // $test = 'App\Livewire\Forms\Superviseur';
+        // // $test = \App\Livewire\Forms\Superviseur;
+        // // \App\Livewire\Forms\Superviseur $test;
+        // // Superviseur $test;
+
+        // dd(
+        //     "modelInputArray=>",$this->modelInputArray,
+        //     // "this->modelInputArray->validate()",($this->modelInputArray)->validate(),
+        //     "modeltype=>", $this->modeltype,
+        //     // "modeltype=>",new $this->modeltype,
+        //     "-",
+        //     "modelname=>",$this->modelname,
+        //     "formName=>",$formName,
+
+        //     // "this->modelInputArrayBis=>",$this->modelInputArrayBis,
+        //     // "this->modelInputArrayBis->validate()=>",($this->modelInputArrayBis)->validate(),
+
+        //     "test=>",$test,
+        //     "testBis=>",$this->testBis,
+
+        // );
+
+
     }
+        // public SuperviseurForm $modelInputArrayBis;
+        // public Forms\SuperviseurForm $modelInputArrayBis;
+    // public FormObjs\SuperviseurForm $modelInputArrayBis;
+        // public 'App\\Livewire\\Forms\\SuperviseurForm' $modelInputArrayBis;
+        // public App\Livewire\Forms\SuperviseurForm $modelInputArrayBis;
+
+    // public Superviseur $testBis;
 
                 // public function openModal()
                 // {
@@ -89,32 +198,135 @@ class ManageModels extends Component
 
 
 
-    public $modelInputArray=[];
+    // public function updated($field)
+    // {
+    //     // $this->validateOnly($field,
+
+    //     //             // [
+    //     //             //     "modelInputArray.pseudo"=>"required",
+    //     //             //     "modelInputArray.telephone"=>"required|numeric",
+    //     //             //     "modelInputArray.user_id"=>"required|exists:users,id",
+    //     //             // ]
+
+    //     //     $this->modelValidationFields
+
+    //     // );
+
+    //     $this->validate();
+    // }
+
+        // public $modelInputArray=[];
+        // public SuperviseurForm $superviseurForm;
+    // public SuperviseurForm $modelInputArray;
+        // public "App\\Livewire\\Forms\\SuperviseurForm" $modelInputArray;
+    public $modelInputArray;
+    // public Form $modelInputArray;
+    public FormObjs\SuperviseurForm $superviseurform;
+    // public SuperviseurForm $superviseurform;
+    public FormObjs\SiteForm $siteform;
+    public FormObjs\UserForm $userform;
+    public FormObjs\ClientForm $clientform;
+
     public function submit()
     {
-        $this->validate([
 
-            // "nom"=>"required",
-            // "email"=>"required|email",
-            // "password"=>"required|min:3|max:10"
+                        // $formName="App\\Livewire\\Forms\\".ucfirst($this->modelname)."Form";
+                        // // $formName=ucfirst($this->modelname)."Form";
+                        // // $this->modelInputArray = new $formName();
+                        // // $this->modelInputArray = new $formName;
+                        // $this->modelInputArray = $formName;
+                        // // $this->modelInputArray = new SuperviseurForm;
+                        // // $this->modelInputArray = new SuperviseurForm();
+                        // dd(
+                        //     "this->modelInputArray",$this->modelInputArray,
+                        //     "this->modelInputArray->validate()",($this->modelInputArray)->validate(),
+                        //     "modeltype",$this->modeltype,
+                        //     "-",
+                        //     "modelname",$this->modelname,
+                        //     "formName",$formName,
 
-
-                    // "pseudo"=>"required",
-            "modelInputArray.pseudo"=>"required",
-            "modelInputArray.telephone"=>"required",
-
-                // "modelInputArray.user_id"=>"required",
-                //     // 'post_id' => 'required|exists:posts,id',
-            "modelInputArray.user_id"=>"required|exists:users,id",
-            // 'comment_id' => [
-            //     'required',
-            //     Rule::exists('comments')->where(function ($query) {
-            //         $query->where('post_id', request()->post_id);
-            //     }),
-            // ], 
+                        // );
 
 
-        ]);
+        // dd(
+        //     $this->superviseurform,
+        //     // $this->superviseurform->rules()
+            
+        //     $this->modelInputArray,
+        // );
+
+        // $test = 'App\Livewire\Forms\Superviseur';
+                // $test = \App\Livewire\Forms\Superviseur;
+                // \App\Livewire\Forms\Superviseur $test;
+                // Superviseur $test;
+
+                // $this->modelInputArray->set('propertyName','modelInputArray');
+                // $this->modelInputArray->setPropertyName('modelInputArray');
+                // $this->modelInputArray->propertyName='modelInputArray';
+                // $this->modelInputArray['propertyName']='modelInputArray';
+
+        // dd(
+        //     "modelInputArray=>",$this->modelInputArray,
+
+
+        //     // "this->modelInputArray->validate()",($this->modelInputArray)->validate(),
+        //     "modeltype=>", $this->modeltype,
+        //     // "modeltype=>",new $this->modeltype,
+        //     "-",
+        //     "modelname=>",$this->modelname,
+        //     // "formName=>",$formName,
+
+        //     // "this->modelInputArrayBis=>",$this->modelInputArrayBis,
+        //     // "this->modelInputArrayBis->validate()=>",($this->modelInputArrayBis)->validate(),
+
+        //     "test=>",$test,
+        //     // "testBis=>",$this->testBis,
+
+        // );
+
+
+        // $this->superviseurForm->store();
+// $this->modelInputArray->store();
+// if ($model_type === "Create") {
+if ($this->pageType === "Create") {
+    $this->modelInputArray->store();
+}else {
+    $this->modelInputArray->update();
+}
+
+        // return;
+        // return $this->redirect('/');
+        // return $this->redirect();
+    }
+
+    public function oldSubmit()
+    {
+        $this->validate(
+            // [
+
+            //     // "nom"=>"required",
+            //     // "email"=>"required|email",
+            //     // "password"=>"required|min:3|max:10"
+
+
+            //             // "pseudo"=>"required",
+            //     "modelInputArray.pseudo"=>"required",
+            //     "modelInputArray.telephone"=>"required|numeric",
+
+            //         // "modelInputArray.user_id"=>"required",
+            //         //     // 'post_id' => 'required|exists:posts,id',
+            //     "modelInputArray.user_id"=>"required|exists:users,id",
+            //     // 'comment_id' => [
+            //     //     'required',
+            //     //     Rule::exists('comments')->where(function ($query) {
+            //     //         $query->where('post_id', request()->post_id);
+            //     //     }),
+            //     // ], 
+
+
+            // ]
+            $this->modelValidationFields
+        );
 
         // // dd("nombis",$this->nombis);
         // dd(
@@ -141,13 +353,19 @@ class ManageModels extends Component
 
             }
 
-            // refreshPage(); 
 
+            // refreshPage(); 
+            $this->reset(); 
+
+            // $this->redirect();
+
+            // return view('livewire');
 
 
         } catch (\Throwable $th) {
             //throw $th;
         }
+
 
     }
 
@@ -166,21 +384,49 @@ class ManageModels extends Component
             $this->pageType=$model_type;
 
             // if ($model_type === "Edit") {
-            if ($model_type === "Create") {
+            // if ($model_type === "Create") {
+            if ($this->pageType === "Create") {
                 
                     // $this->manageEditModelModal = true;
                 // $this->manageCreateModelModal = true;
-                $this->manageModelModal = new $this->modeltype;
+$this->manageModelModal = new $this->modeltype;
 
                 // $this->modelInputArray=$this->manageModelModal->getFillable();
-
+// if ($this->modelname==="superviseur") {
+//     $this->modelInputArray = $this->superviseurform;
+// }elseif ($this->modelname==="site") {
+//     $this->modelInputArray = $this->siteform;
+// }elseif ($this->modelname==="user") {
+//     $this->modelInputArray = $this->userform;
+// }elseif ($this->modelname==="client") {
+//     $this->modelInputArray = $this->clientform;
+// }else {
+//     $this->modelInputArray = [];
+// }
 
             }
             else {
-                
+
+//--------
                 // $this->pageTypeModelModal = true;
-                $this->manageModelModal = $this->modeltype::find($modalid);
-                $this->modelInputArray=$this->manageModelModal->toArray();
+$this->manageModelModal = $this->modeltype::find($modalid);
+    // $this->modelInputArray=$this->manageModelModal->toArray();
+//------------
+// if ($this->modelname==="superviseur") {
+//     $this->modelInputArray = $this->superviseurform;
+// }elseif ($this->modelname==="site") {
+//     $this->modelInputArray = $this->siteform;
+// }elseif ($this->modelname==="user") {
+//     $this->modelInputArray = $this->userform;
+// }elseif ($this->modelname==="client") {
+//     $this->modelInputArray = $this->clientform;
+// }else {
+//     $this->modelInputArray = [];
+// }
+// dd($this->modelInputArray,$modalid);
+
+$this->modelInputArray->setSuperviseurForm($modalid);
+//----------
 
             }
 
