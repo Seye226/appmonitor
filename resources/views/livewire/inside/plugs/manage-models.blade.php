@@ -19,6 +19,13 @@
 
 
 
+                                                            
+                                                            foreach($modelInputArray as $thek=>$thet)
+                                                            dd("modelInputArray",$modelInputArray,"thet",$thet)
+                                                            <p>$thek .' - '. $thet</p>
+                                                            endforeach
+
+
                 <div class="ml-4 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150">
                     <x-nav-link href="{{ route('manage.managecreateview') }}" :active="request()->routeIs('manage.managecreateview')">
                         {{ __('manage.managecreateview-'.$modeltype.'s') }}
@@ -53,18 +60,22 @@
                                 </x-slot>
                                 <x-slot name="content">
 
-                                    dialog-modal-content
+                                    dialog-modal-content-AAA
 
-                                    dialog-modal-content
+                                    dialog-modal-content-NEW
+                                    
+                                    {{json_encode($manageModelModal)}}
 
                                     <div>
 
 
                                         <div>
 
-                                            @if($manageModelModal)
+                                            if($manageModelModal)
+                                                if($modelInputArray)
+                                            @if($modelInputArray && $manageModelModal)
                                                 <p>
-                                                    {{ucfirst($modeltype)}} Id: {{ json_encode($manageModelModal->getFillable()) }}
+                                                    {{ucfirst($modeltype)}} Id: {{-- json_encode($manageModelModal->getFillable()) --}}
                                                 </p>
 
                                                 <div>
@@ -95,12 +106,15 @@
 
 
                                                         <ul>
+                                                            
+                                                            {{--dd($modelInputArray,$manageModelModal->getFillable())--}}
                                                             foreach($modelInputArray as $modelInput=>$inputValue)
                                                             @foreach($manageModelModal->getFillable() as $modelInput)
                                                             <li class="p-2 m-2 border-1 border-gray-500 bg-gray-300" >
                                                                 <p><strong>{{ucfirst($modelInput)}}</strong> :</p>
 
                                                                 <div class="p-2 m-2 border-1 border-gray-500">
+                                                                if( ($pageType === "Edit") && isset($superviseur->id))
                                                                 @if( ($pageType === "Edit") && isset($superviseur->id))
                                                                     <x-input id="{{$modelInput}}" name="{{$modelInput}}" wire:model.live.debounce.300ms="modelInputArray.{{$modelInput}}"></x-input>
                                                                     @error('modelInputArray.'.$modelInput) <span class="bg-red-500">{{$message}}</span> @enderror
@@ -129,8 +143,11 @@
                                                     <div>
 
                                                         <h3>Nom du Model: {{$modelname}}<strong>::Class</strong> </h3>
-                                                        @livewire('inside.manage.'.$modelname.'.manage-'.$modelname,[$modelname.'Id'=>$manageModelModal->id, 'pageType'=>$pageType])
-
+                                                        @if($manageModelModal)
+                                                            @livewire('inside.manage.'.$modelname.'.manage-'.$modelname,[$modelname.'Id'=>$manageModelModal->id, 'pageType'=>$pageType])
+                                                        @else
+                                                            <p class="bg-yellow-300">dd("HEY dd from manage-models.blade!!: manageModelModal IS NULL")</p>
+                                                        @endif
                                                     </div>
 
 
@@ -170,9 +187,81 @@
 
 
 
+
+
+
+
+
+
+
+                        <!-- ---DEBUT-TEST-1----- -->
+                        <div id="myDiv" class="w-48 h-48 bg-blue-500 flex items-center justify-center text-white transition-colors duration-500 ease-in-out">
+                            Hey ICI myDiv!!
+                        </div>
+                            
+                        <script>
+                            document.addEventListener('DOMContentLoaded', (event) => {
+
+                                var divList=[];
+
+                                const mydiv = document.getElementById('myDiv');
+
+                                setTimeout(() =>{
+                                    //Remove the old background color class
+                                    myDiv.classList.remove('bg-blue-500');
+                                    //Add the new background color class
+                                    myDiv.classList.add('bg-red-500');
+                                // }, 1000); //1000 milliseconde = 10 secondes
+                                }, 10000); //1000 milliseconde = 10 secondes
+                            });
+                        </script>
+                        <!-- ---END-TEST-1----- -->
+
+
+
+
+
+
+
+
+
+
                         <div>
                             @foreach($models as $model)
                                 <div class="p-6 lg:p-8 border-dotted border-2 border-red-500 {{ ($manageModelModal && $manageModelModal->id == $model->id) ? 'bg-green-200' : 'bg-gray-200 ' }}">
+
+                                    <p>
+                                        {{ ($manageModelModal && $manageModelModal->id == $model->id) ? 'bg-green-200' : 'bg-gray-200 ' }}
+                                    </p>
+
+                                    <script>
+
+                                        // document.addEventListener('DOMContentLoaded', (event) => {
+                                        //     // const mydiv = document.getElementById('myDiv');
+
+                                        //     var divList=[];
+                                        //     //     // divList[{$model}] =  document.getElementById('myDiv'+ { $model});
+                                        //     divList['{{$model->id}}'] =  {{$model->id}};
+                                        //     // divList['{{$model->id}}'] =  document.getElementById('myDiv'+ {{$model->id}});
+                                            
+                                        //     divListChangeInDelay['{{$model->id}}'] =  {{$model->id}};
+
+                                        //     console.log(divList,divList['{{$model->id}}']);
+                                        //     console.log(divListChangeInDelay,divListChangeInDelay['{{$model->id}}']);
+                                        //     console.log('---------');
+
+                                        //     setTimeout(() =>{
+                                        //         //Remove the old background color class
+                                        //             // myDiv.classList.remove('bg-blue-500');
+                                        //         // myDiv.classList.remove('bg-blue-500');
+                                        //         //Add the new background color class
+                                        //             // myDiv.classList.add('bg-red-500');
+                                        //         // myDiv.classList.add('bg-red-500');
+                                        //     // }, 1000); //1000 milliseconde = 10 secondes
+                                        //     }, 10000); //1000 milliseconde = 10 secondes
+
+                                        // });
+                                    </script>
 
 
                                             {{ json_encode($model) }}
@@ -198,6 +287,7 @@
                                     </div>
 
                                 </div>
+
                             @endforeach
                         </div>
 

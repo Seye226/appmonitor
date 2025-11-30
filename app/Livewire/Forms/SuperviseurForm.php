@@ -23,38 +23,71 @@ class SuperviseurForm extends Form
     // }
 
     public ?Superviseur $superviseur;
-    // private ?Superviseur $superviseur;
-    // protected ?Superviseur $superviseur;
+            // private ?Superviseur $superviseur;
+            // protected ?Superviseur $superviseur;
+
+
+    // private int $id;
 
     #[Rule('required')]
     public string $pseudo = '';
 
     #[Rule('required|numeric')]
     public string $telephone = '';
+    // public int $telephone;
 
     #[Rule('required|exists:users,id')]
     public string $user_id = '';
 
-    // public function setSuperviseurForm(Superviseur $superviseur){
-    public function setSuperviseurForm($superviseurId){
+        // public function setSuperviseurForm(Superviseur $superviseur){
+    // public function setSuperviseurForm($superviseurId){
+    public function setForm($superviseurId){
         // $this->superviseur = $superviseur;
-        $superviseur = Superviseur::find($superviseurId);
-        $this->superviseur = $superviseur;
 
-        $this->pseudo = $superviseur->pseudo;
-        $this->telephone = $superviseur->telephone;
-        $this->user_id = $superviseur->user_id;
+        $superviseur = Superviseur::find($superviseurId);
+
+        // if ($superviseurId) {
+        if ($superviseurId && $superviseur) {
+
+            # code...
+        
+            $this->superviseur = $superviseur;
+
+            // $this->id = $superviseurId??'';
+
+            $this->pseudo = $superviseur->pseudo??'';
+            $this->telephone = $superviseur->telephone??'';
+            $this->user_id = $superviseur->user_id??'';
+        }else {
+            $this->reset();
+        }
 
     }
+    // public function resetForm(){
+
+    //     // $this->superviseur = null;
+
+    //     // $this->pseudo = '';
+    //     // $this->telephone = '';
+    //     // $this->user_id = '';
+
+    //     // $this->reset();
+
+    // }
 
     public function update(){
         $this->validate();
 
         // Superviseur::update([
         $this->superviseur->update([
+        // Superviseur::find($this->id)->update([
+
             "pseudo"=>$this->pseudo,
             "telephone"=>$this->telephone,
             "user_id"=>$this->user_id,
+
+            // $this->pull()
+
         ]);
 
         $this->reset(); 
@@ -68,10 +101,14 @@ class SuperviseurForm extends Form
             "pseudo"=>$this->pseudo,
             "telephone"=>$this->telephone,
             "user_id"=>$this->user_id,
+
+            // $this->pull()
+
         ]);
 
         $this->reset(); 
 
     }
+
 
 }

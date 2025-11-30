@@ -17,16 +17,32 @@ class Client extends Model
         'pseudo',
         'adresse',
         'telephone',
+
 "user_id",
+// "default_user_id",
 
-"created_by_user_id",
+// "created_by_user_id",
 
+    ];
+
+    protected $hidden = [
+        // 'password',
+        // 'remember_token',
+        // 'two_factor_recovery_codes',
+        // 'two_factor_secret',
+
+        'created_by_user_id',
     ];
 
 
     public function user()
     {
         return $this->belongsTo(\App\Models\User::class, 'user_id');
+    }
+
+    public function createdByUser()
+    {
+        return $this->belongsTo(\App\Models\User::class, 'created_by_user_id');
     }
     
     public function sites()
