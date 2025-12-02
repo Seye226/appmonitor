@@ -39,6 +39,20 @@ class SuperviseurForm extends Form
     #[Rule('required|exists:users,id')]
     public string $user_id = '';
 
+
+    public $inputsTypeList = [
+        'pseudo'=>['inputType'=>'text'],
+
+        // 'telephone'=>['inputType'=>'number'],
+        'telephone'=>['inputType'=>'tel'],
+
+        'user_id'=>['inputType'=>'select'],
+
+
+    ];
+
+
+
         // public function setSuperviseurForm(Superviseur $superviseur){
     // public function setSuperviseurForm($superviseurId){
     public function setForm($superviseurId){

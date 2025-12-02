@@ -228,7 +228,65 @@ public function getModelForm($modelname){
     return $modelInputArray;
 
 }
+
+
+
 // fff
+public function getModelForeignSelect($foreignModelSelectname){
+
+    // return $foreignModelSelectname;
+    
+    // dd(
+    //     "hey ici on veux la liste de ce model:",
+    //     $foreignModelSelectname,
+    //     explode("_",$foreignModelSelectname),
+    //     explode("_id",$foreignModelSelectname),
+    //     str_replace("_id", "", $foreignModelSelectname),
+    //             // preg_replace('/\bfox\b/', '', $string)
+    //         // preg_replace('_id', '', $foreignModelSelectname)
+    // );
+
+    $modelInput = explode("_",$foreignModelSelectname);
+    //     // $modelnameList = 'App\\Models\\'.ucfirst($modelInput[0]); //::all();
+    //     //     // $modelnameList = '\\App\\Models\\Client'::all();
+    //     // // $modelnameList = 'App\\Models\\'.ucfirst($modelInput[0]);
+    // $theforeingmodel = 'App\\Models\\'.ucfirst($modelInput[0]);
+    // $modelnameList = $theforeingmodel::all();
+
+    if (count($modelInput) > 2) {
+        dd(
+            "hey from ManageModels!! in getModelForeignSelect FUNCTION! SEE because we want to get this-model-input-foreign-list (like ClientModel for client_id attribute!)",
+            "THE DD on IF because modelInput is more then two!(>2)",
+            "modelInput=>",
+            $modelInput,
+        );
+        $modelnameList = null;
+    }else {
+        // // $modelnameList = 'App\\Model\\'.ucfirst($modelInput[0])::all();
+        // $modelnameList = 'App\\Models\\'.ucfirst($modelInput[0]);
+        $theforeingmodel = 'App\\Models\\'.ucfirst($modelInput[0]);
+        $modelnameList = $theforeingmodel::all();
+
+        $modelnameListB = $theforeingmodel::get()->all();
+
+    }
+
+    // dd(
+    //     $foreignModelSelectname,
+    //     $modelInput,
+    //     $modelnameList,
+
+    //     // "modeltype",
+    //     // $this->modeltype,
+
+    //     $modelnameListB,
+
+    //     // \App\Models\Client::all(),
+    // );
+
+    return $modelnameList;
+
+}
 
 
     // public function updated($field)
@@ -340,78 +398,80 @@ public function getModelForm($modelname){
         // return;
         // return $this->redirect('/');
         // return $this->redirect();
-
-    }
-
-    public function oldSubmit()
-    {
-        $this->validate(
-            // [
-
-            //     // "nom"=>"required",
-            //     // "email"=>"required|email",
-            //     // "password"=>"required|min:3|max:10"
-
-
-            //             // "pseudo"=>"required",
-            //     "modelInputArray.pseudo"=>"required",
-            //     "modelInputArray.telephone"=>"required|numeric",
-
-            //         // "modelInputArray.user_id"=>"required",
-            //         //     // 'post_id' => 'required|exists:posts,id',
-            //     "modelInputArray.user_id"=>"required|exists:users,id",
-            //     // 'comment_id' => [
-            //     //     'required',
-            //     //     Rule::exists('comments')->where(function ($query) {
-            //     //         $query->where('post_id', request()->post_id);
-            //     //     }),
-            //     // ], 
-
-
-            // ]
-            $this->modelValidationFields
-        );
-
-        // // dd("nombis",$this->nombis);
-        // dd(
-        //     "modelInputArray",$this->modelInputArray,
-        //     "modelInputArray.pseudo",$this->modelInputArray['pseudo']
-        // );
-
-        try {
-            //code...
-
-
-            // if ($this->pageType==="Edit" && isset($this->manageModelModal)) {
-            if ($this->pageType==="Edit" && isset($this->manageModelModal->id)) {
-                # code...
-                // dd("this->pageType",$this->pageType,"update");
-                $this->manageModelModal::update($this->modelInputArray);
-            }elseif ($this->pageType==="Create") {
-                # code...
-                // dd("this->pageType",$this->pageType,"create");
-                $this->manageModelModal::create($this->modelInputArray);
-            }else {
-                # code...
-                dd("HEY DD FROM livewire.inside.plugs.ManageModels in Submit->function()","this->pageType",$this->pageType,"none");
-
-            }
-
-
-            // refreshPage(); 
-            $this->reset(); 
-
-            // $this->redirect();
-
-            // return view('livewire');
-
-
-        } catch (\Throwable $th) {
-            //throw $th;
-        }
+// return redirect()->to('/posts');
 
 
     }
+
+                    public function oldSubmit()
+                    {
+                        $this->validate(
+                            // [
+
+                            //     // "nom"=>"required",
+                            //     // "email"=>"required|email",
+                            //     // "password"=>"required|min:3|max:10"
+
+
+                            //             // "pseudo"=>"required",
+                            //     "modelInputArray.pseudo"=>"required",
+                            //     "modelInputArray.telephone"=>"required|numeric",
+
+                            //         // "modelInputArray.user_id"=>"required",
+                            //         //     // 'post_id' => 'required|exists:posts,id',
+                            //     "modelInputArray.user_id"=>"required|exists:users,id",
+                            //     // 'comment_id' => [
+                            //     //     'required',
+                            //     //     Rule::exists('comments')->where(function ($query) {
+                            //     //         $query->where('post_id', request()->post_id);
+                            //     //     }),
+                            //     // ], 
+
+
+                            // ]
+                            $this->modelValidationFields
+                        );
+
+                        // // dd("nombis",$this->nombis);
+                        // dd(
+                        //     "modelInputArray",$this->modelInputArray,
+                        //     "modelInputArray.pseudo",$this->modelInputArray['pseudo']
+                        // );
+
+                        try {
+                            //code...
+
+
+                            // if ($this->pageType==="Edit" && isset($this->manageModelModal)) {
+                            if ($this->pageType==="Edit" && isset($this->manageModelModal->id)) {
+                                # code...
+                                // dd("this->pageType",$this->pageType,"update");
+                                $this->manageModelModal::update($this->modelInputArray);
+                            }elseif ($this->pageType==="Create") {
+                                # code...
+                                // dd("this->pageType",$this->pageType,"create");
+                                $this->manageModelModal::create($this->modelInputArray);
+                            }else {
+                                # code...
+                                dd("HEY DD FROM livewire.inside.plugs.ManageModels in Submit->function()","this->pageType",$this->pageType,"none");
+
+                            }
+
+
+                            // refreshPage(); 
+                            $this->reset(); 
+
+                            // $this->redirect();
+
+                            // return view('livewire');
+
+
+                        } catch (\Throwable $th) {
+                            //throw $th;
+                        }
+
+
+                    }
 
 
 
@@ -420,6 +480,11 @@ public function getModelForm($modelname){
         // public function openManageModelModal($modalid)
         public function openManageModelModal($modalid,$model_type)
         {
+
+
+// dd("1/2-modelInputArray",$this->modelInputArray,"inputsTypeList",$this->modelInputArray->inputsTypeList);
+
+
             // dd('here modalid: '.$modalid." model_type: ".$model_type);
             // $this->manageViewModelModal = true;
 
@@ -545,9 +610,11 @@ public function getModelForm($modelname){
 
             //     // $this->manageModelModal = User::find($modalid);
             // $this->manageModelModal = $this->modeltype::find($modalid);
+
+
+    // dd("2/2-modelInputArray",$this->modelInputArray,"inputsTypeList");
+        
         }
-
-
 
         public function updatedPageTypeModelModal()
         {

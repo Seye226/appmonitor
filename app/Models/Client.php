@@ -21,6 +21,7 @@ class Client extends Model
 "user_id",
 // "default_user_id",
 
+
 // "created_by_user_id",
 
     ];

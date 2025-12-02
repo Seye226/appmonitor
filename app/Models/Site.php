@@ -15,15 +15,22 @@ class Site extends Model
     protected $fillable = [
         'description',
         'reference',
+        'adresse',
+
         'localisation',
 
         'client_id',
 
+        // 'origin_superviseur_id',
+        'superviseur_id',
 
-                    // $table->string('description');
-                    // $table->string('reference')->unique();
 
-                    // $table->string('localisation')->unique();
+
+            //             // $table->string('description');
+            //             // $table->string('reference')->unique();
+            //             // $table->string('adresse')->unique();
+
+            //             // $table->string('localisation')->unique();
 
             // $table->string('load_info')->nullable();
             // $table->string('pv_info')->nullable();
@@ -31,13 +38,21 @@ class Site extends Model
             // $table->string('grid_info')->nullable();
             
             // $table->string('genset_info')->nullable();
+            
+            //             // $table->foreignId('client_id')->index();
 
-            // $table->foreignId('client_id')->nullable()->index();
-            // $table->foreignId('origin_superviseur_id')->nullable()->index();
-            // $table->foreignId('superviseur_id')->nullable()->index();
+            //             // // $table->foreignId('origin_superviseur_id')->nullable()->index();
+            //             // $table->foreignId('superviseur_id')->nullable()->index();
 
 
-        'superviseur_id',
+
+        'load_info',
+        'pv_info',
+        'battery_info',
+        'grid_info',
+
+        'genset_info',
+        
 
         
     ];

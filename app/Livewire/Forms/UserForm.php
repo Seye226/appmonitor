@@ -28,7 +28,19 @@ class UserForm extends Form
     public ?string $profile_photo_url;
 
 
+    public $inputsTypeList = [
+        'name'=>['inputType'=>'text'],
+        'email'=>['inputType'=>'email'],
+        'password'=>['inputType'=>'password'],
+
+        // 'profile_photo_url'=>['inputType'=>'file'],
+        'profile_photo_url'=>['inputType'=>'image'],
+
+    ];
+
+
     public function setForm($userId){
+
         // $this->superviseur = $superviseur;
         $user = User::find($userId);
             

@@ -20,10 +20,11 @@
 
 
                                                             
-                                                            foreach($modelInputArray as $thek=>$thet)
-                                                            dd("modelInputArray",$modelInputArray,"thet",$thet)
-                                                            <p>$thek .' - '. $thet</p>
-                                                            endforeach
+                <!-- <div>
+                    foreach($modelInputArray as $thek=>$thet)
+                        <p>{{--$thek .' - '. $thet--}}</p>
+                    endforeach
+                </div> -->
 
 
                 <div class="ml-4 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150">
@@ -60,9 +61,8 @@
                                 </x-slot>
                                 <x-slot name="content">
 
-                                    dialog-modal-content-AAA
-
-                                    dialog-modal-content-NEW
+                                    <!-- dialog-modal-content-AAA
+                                    dialog-modal-content-NEW -->
                                     
                                     {{json_encode($manageModelModal)}}
 
@@ -71,22 +71,22 @@
 
                                         <div>
 
-                                            if($manageModelModal)
-                                                if($modelInputArray)
+                                            <!-- if($manageModelModal) -->
+                                            <!-- if($modelInputArray) -->
                                             @if($modelInputArray && $manageModelModal)
                                                 <p>
                                                     {{ucfirst($modeltype)}} Id: {{-- json_encode($manageModelModal->getFillable()) --}}
                                                 </p>
 
-                                                <div>
+                                                <!-- <div>
 
-                                                    @foreach($manageModelModal->getFillable() as $fillable)
+                                                    foreach($manageModelModal->getFillable() as $fillable)
 
-                                                    <p>{{$fillable}}</p>
+                                                    <p>{{-- $fillable --}}</p>
 
-                                                    @endforeach
+                                                    endforeach
 
-                                                </div>
+                                                </div> -->
 
 
                                                 <!-- -----DEBUT-le27/11/25-FUSION FORM-UNIVERSEL!!------- -->
@@ -94,38 +94,115 @@
 
                                                 @if($pageType === "Edit" || $pageType === "Create" )
 
+                                                {{--$manageModelModal->getFillable()[1]--}}
+
 
                                                     <!-- form action="{{-- route('manage.managecreateview.post', 'frgthy') --}}" method="POST" -->
                                                     <form wire:submit.prevent="submit" action="{{ route('manage.managecreateview.post', 'frgthy') }}" method="POST">
 
                                                         @csrf
 
+
                                                         <p>nom:</p>
                                                         <x-input id="nom" name="nom" wire:model="nom"></x-input>
                                                         @error('nom') <span>{{$message}}</span> @enderror
 
 
+
+<div class="m-1 p-1 bg-gray-100 border-1 border-orange-500">
+    
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul class="alert alert-danger items-center">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
+</div>
+
+
+
+
+
                                                         <ul>
                                                             
                                                             {{--dd($modelInputArray,$manageModelModal->getFillable())--}}
-                                                            foreach($modelInputArray as $modelInput=>$inputValue)
+                                                            {{--dd($this->modelInputArray,$this->modelInputArray->inputsTypeList)--}}
+                                                            <!-- foreach($modelInputArray as $modelInput=>$inputValue) -->
                                                             @foreach($manageModelModal->getFillable() as $modelInput)
                                                             <li class="p-2 m-2 border-1 border-gray-500 bg-gray-300" >
                                                                 <p><strong>{{ucfirst($modelInput)}}</strong> :</p>
 
-                                                                <div class="p-2 m-2 border-1 border-gray-500">
-                                                                if( ($pageType === "Edit") && isset($superviseur->id))
-                                                                @if( ($pageType === "Edit") && isset($superviseur->id))
-                                                                    <x-input id="{{$modelInput}}" name="{{$modelInput}}" wire:model.live.debounce.300ms="modelInputArray.{{$modelInput}}"></x-input>
-                                                                    @error('modelInputArray.'.$modelInput) <span class="bg-red-500">{{$message}}</span> @enderror
-                                                                @else
-                                                                    <x-input id="{{$modelInput}}" name="{{$modelInput}}" wire:model.live="modelInputArray.{{$modelInput}}"></x-input>
-                                                                    @error('modelInputArray.'.$modelInput) <span class="bg-red-500">{{$message}}</span> @enderror
+                                                                <p>{{--dd($manageModelModal, $modelInput, $manageModelModal[$modelInput], gettype($manageModelModal[$modelInput]), $manageModelModal->description, gettype($manageModelModal['description']) )--}}</p>
 
-                                                                @endif
+                                                                <div class="p-2 m-2 border-1 border-gray-500">
+
+                                                                    <!-- if( ($pageType === "Edit") && isset($superviseur->id)) -->
+                                                                    @if( ($pageType === "Edit") && isset($manageModelModal->id))
+                                                                        <div class="bg-gray-200 border-1 border-blue-400">
+                                                                            <x-input id="{{$modelInput}}Q" name="{{$modelInput}}Q" wire:model.live.debounce.300ms="modelInputArray.{{$modelInput}}"></x-input>
+                                                                            @error('modelInputArray.'.$modelInput) <span class="bg-red-500">{{$message}}</span> @enderror
+                                                                        </div>
+                                                                    @else
+                                                                        <div class="bg-gray-400 border-1 border-black-400">
+                                                                            <x-input id="{{$modelInput}}Q" name="{{$modelInput}}Q" wire:model.live="modelInputArray.{{$modelInput}}"></x-input>
+                                                                            @error('modelInputArray.'.$modelInput) <span class="bg-red-500">{{$message}}</span> @enderror
+                                                                        </div>
+                                                                    @endif
+
+
+                                                                    <p>
+                                                                        {{--json_encode( $this->getModelForeignSelect($modelInput) )--}}
+                                                                    </p>
+
+
+                                                                    <div class="p-2 m-2 bg-yellow-200 border-3 border-red-300">
+                                                                        <p class="p-2 m-2 border-2 border-red-300">{{$modelInputArray->inputsTypeList[$modelInput]['inputType']}}</p>
+                                                                        @if($modelInputArray->inputsTypeList[$modelInput]['inputType'] === 'select')
+
+                                                                            <p class="bg-red-300">
+                                                                                {{$modelInput}} = {{$manageModelModal[$modelInput]}}
+                                                                            </p>
+
+
+                                                                            <select id="{{$modelInput}}" name="{{$modelInput}}" wire:model.live="modelInputArray.{{$modelInput}}">
+                                                                                    <option value="kader">kader</option>
+                                                                                    g
+                                                                                    d
+                                                                                    e
+                                                                                @foreach($this->getModelForeignSelect($modelInput) as $theselection)
+                                                                                    <option value="{{$theselection->id}}">{{$theselection->id.'-'.$theselection->pseudo}}</option>
+                                                                                @endforeach    
+                                                                            </select>
+
+
+                                                                        @elseif($modelInputArray->inputsTypeList[$modelInput]['inputType'] === 'textarea')
+
+                                                                            <textarea id="{{$modelInput}}" name="{{$modelInput}}" wire:model.live="modelInputArray.{{$modelInput}}"></textarea>
+
+                                                                        @else
+
+                                                                            <input type="{{$modelInputArray->inputsTypeList[$modelInput]['inputType']}}" id="{{$modelInput}}" name="{{$modelInput}}" wire:model.live="modelInputArray.{{$modelInput}}">
+
+
+                                                                            <x-input type="{{$modelInputArray->inputsTypeList[$modelInput]['inputType']}}" id="{{$modelInput}}" name="{{$modelInput}}" wire:model.live.debounce.300ms="modelInputArray.{{$modelInput}}"></x-input>
+                                                                            @error('modelInputArray.'.$modelInput) <span class="bg-red-500">{{$message}}</span> @enderror
+
+                                                                            
+                                                                        @endif
+                                                                    </div>
+
+                                                                    <input type="text" wire:model.blur="modelInputArray.{{$modelInput}}" wire:dirty.class="border-red-500">
+                                                                    <div wire:dirty wire:target="modelInputArray.{{$modelInput}}">
+                                                                        <div>Unsaved ...</div>
+                                                                    </div>
+
                                                                 </div>
 
-                                                                <p>TEST: {{-- isset($modelInputArray[$modelInput]) ? $modelInputArray[$modelInput] : ''--}}{{json_encode($modelInputArray)}}</p>
+                                                                <!-- <p>TEST: {{-- isset($modelInputArray[$modelInput]) ? $modelInputArray[$modelInput] : ''--}}{{--json_encode($modelInputArray)--}}</p> -->
 
                                                             </li>
                                                             @endforeach

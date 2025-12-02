@@ -39,15 +39,30 @@ class ClientForm extends Form
     public string $user_id = '';
 
 
+    public $inputsTypeList = [
+        'firstname'=>['inputType'=>'text'],
+        'lastname'=>['inputType'=>'text'],
+        'pseudo'=>['inputType'=>'text'],
+
+        'adresse'=>['inputType'=>'text'],
+        'telephone'=>['inputType'=>'tel'],
+        'user_id'=>['inputType'=>'select'],
+
+    ];
+
+
+
+
+
     // public string $created_by_user_id;
     // // public string $created_by_user_id = auth()->user()->id;
 
 
-    // // public function __construct(){
-    // public function mount(){
-    //     dd('dd hey client-form!',auth()->user()->id);
-    //     $this->created_by_user_id = auth()->user()->id;
-    // }
+            // // public function __construct(){
+            // public function mount(){
+            //     dd('dd hey client-form!',auth()->user()->id);
+            //     $this->created_by_user_id = auth()->user()->id;
+            // }
 
 
     // public function setClientForm($clientId){
