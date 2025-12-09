@@ -19,7 +19,7 @@
                     </p>
                 </div>
 
-                <livewire:inside.plugs.manage-models :modeltype="$modelclass" />
+                <livewire:inside.plugs.manage-models :modeltype="$modelclass" :themodelform="$modelformclass" />
 
             </div>
         </div>

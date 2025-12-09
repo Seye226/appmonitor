@@ -18,11 +18,16 @@ class UserForm extends Form
     #[Rule('required')]
     public ?string $name;
 
-    #[Rule('required')]
+    // #[Rule('required|email')]
+    #[Rule('required|email|unique:users,email')]
     public ?string $email;
 
-    #[Rule('required')]
+    #[Rule('required|password')]
+    // #[Rule('required')]
     public ?string $password;
+
+    // #[Rule('required')]
+    // public ?string $confirm_password;
 
         
     public ?string $profile_photo_url;
@@ -37,6 +42,7 @@ class UserForm extends Form
         'profile_photo_url'=>['inputType'=>'image'],
 
     ];
+
 
 
     public function setForm($userId){
@@ -59,7 +65,26 @@ class UserForm extends Form
     }
 
     public function update(){
-        $this->validate();
+
+        // $this->validate();
+
+        $this->validate([
+            'name'=>[
+                'required',
+            ],
+            'email'=>[
+                'required',
+                'email',
+                'unique:users,email',
+            ],
+            'password'=>[
+                'required',
+                // 'password',
+            ],
+
+            // 'profile_photo_url'=>[],
+
+        ]);
 
         // Superviseur::update([
         $this->user->update([

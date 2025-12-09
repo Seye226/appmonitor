@@ -10,6 +10,14 @@ use Livewire\Attributes\Layout;
 
 // #[Layout('layouts.app') ]
 
+
+// use App\Livewire\Forms\SuperviseurForm;
+use App\Livewire\Forms\SiteForm;
+// use App\Livewire\Forms as FormObjs;
+// use Livewire\Form;
+
+
+
 class ManageSites extends Component
 {
     public $count;
@@ -18,6 +26,12 @@ class ManageSites extends Component
     public $sites;
 
     public $modelclass;
+
+
+    // public $modelformclass;
+    public SiteForm $modelformclass;
+
+
     public function mount(){
 
         $this->modelclass = Site::class;
@@ -55,7 +69,7 @@ class ManageSites extends Component
 
         public function openManageCreateUserModal()
         {
-            dd('here');
+            dd('here FROM Livewire.ManageSites');
             // $this->manageCreateUserModal = true;
         }
 

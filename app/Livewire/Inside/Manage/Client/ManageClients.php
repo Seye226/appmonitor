@@ -8,6 +8,8 @@ use App\Models\Client;
 
 use Livewire\Attributes\Layout;
 
+use App\Livewire\Forms\ClientForm;
+
 // #[Layout('layouts.app') ]
 
 class ManageClients extends Component
@@ -19,6 +21,7 @@ class ManageClients extends Component
     public $clients;
 
     public $modelclass;
+    public ClientForm $modelformclass;
     public function mount(){
 
         $this->modelclass = Client::class;
@@ -57,7 +60,7 @@ class ManageClients extends Component
 
         public function openManageCreateUserModal()
         {
-            dd('here');
+            dd('here Livewire.manageClients');
             // $this->manageCreateUserModal = true;
         }
 

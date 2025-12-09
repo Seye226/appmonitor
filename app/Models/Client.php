@@ -24,6 +24,7 @@ class Client extends Model
 
 // "created_by_user_id",
 
+
     ];
 
     protected $hidden = [

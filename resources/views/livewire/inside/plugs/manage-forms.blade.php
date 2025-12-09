@@ -5,20 +5,16 @@
                 
                 <div class="border-4 border-indigo-500 ...">
 
-
-                    <h1>MANAGE - Liste des sites</h1>
-                
-                    <p>
-                        Sites nombre: {{$sites->count()}}
-                    </p> 
-
+                    <h1>MANAGE - Form </h1>
+                        
                     <p>
                         <small>Info-detail: </small>
 
-                    </p>
-                </div>
 
-                <livewire:inside.plugs.manage-models :modeltype="$modelclass" :themodelform="$modelformclass"/>
+                    </p>
+                </div>              
+
+
 
             </div>
         </div>

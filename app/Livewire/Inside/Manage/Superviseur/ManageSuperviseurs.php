@@ -9,6 +9,8 @@ use App\Models\Superviseur;
 
 use Livewire\Attributes\Layout;
 
+use App\Livewire\Forms\SuperviseurForm;
+
 // #[Layout('layouts.app') ]
 
 class ManageSuperviseurs extends Component
@@ -19,6 +21,7 @@ class ManageSuperviseurs extends Component
     public $superviseurs;
 
     public $modelclass;
+    public SuperviseurForm $modelformclass;
     public function mount(){
 
         $this->modelclass = Superviseur::class;
@@ -57,7 +60,7 @@ class ManageSuperviseurs extends Component
 
         public function openManageCreateUserModal()
         {
-            dd('here');
+            dd('here Livewire.ManageSuperviseurs');
             // $this->manageCreateUserModal = true;
         }
 

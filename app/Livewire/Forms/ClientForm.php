@@ -26,6 +26,7 @@ class ClientForm extends Form
     public ?string $lastname;
 
     #[Rule('required')]
+    // #[Rule('required|unique:clients,pseudo')]
     public ?string $pseudo;
 
     #[Rule('required')]
@@ -49,8 +50,6 @@ class ClientForm extends Form
         'user_id'=>['inputType'=>'select'],
 
     ];
-
-
 
 
 

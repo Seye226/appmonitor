@@ -9,6 +9,8 @@ use Livewire\Attributes\Rule;
 
 use App\Models\Superviseur;
 
+use Illuminate\Validation\Rule as ValidationRule;
+
 class SuperviseurForm extends Form
 {
     //
@@ -29,7 +31,8 @@ class SuperviseurForm extends Form
 
     // private int $id;
 
-    #[Rule('required')]
+    // #[Rule('required')]
+    #[Rule('required|unique:superviseurs,pseudo')]
     public string $pseudo = '';
 
     #[Rule('required|numeric')]
@@ -50,6 +53,7 @@ class SuperviseurForm extends Form
 
 
     ];
+
 
 
 
@@ -90,7 +94,36 @@ class SuperviseurForm extends Form
     // }
 
     public function update(){
-        $this->validate();
+        $this->validate([
+
+                // 'pseudo'=>[
+                //     'required',
+                //     // 'text'
+                // ],
+                    // 'pseudo'=>['required','unique:superviseurs,pseudo'],
+                // "pseudo"=>[
+                //     'required',
+                //     // Rule::unique('superviseurs', 'pseudo')->ignore($this->superviseur->id),
+                //     ValidationRule::unique('superviseurs', 'pseudo')->ignore($this->superviseur->id),
+                // ],
+
+
+
+                'telephone'=>[
+                    'required',
+                    // 'text'
+                ],
+
+
+
+                'user_id'=>[
+                    'required',
+
+                    'exists:users,id',
+                    // 'text'
+                ],
+
+        ]);
 
         // Superviseur::update([
         $this->superviseur->update([

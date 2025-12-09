@@ -49,7 +49,12 @@ class ManageModels extends Component
     public $modelname;
 public $modelValidationFields;
 
-    public function mount($modeltype){
+// public $modelInputArrayBis;
+    // public function mount($modeltype,$modelInputArrayBis){
+    // public function mount($modeltype,$modelInputArray){
+    // public function mount($modeltype,$modelInputArrayBis){
+    public function mount($modeltype,$themodelform){
+    // public function mount($modeltype){
         // dd("modeltype",$modeltype);
         
         $this->modeltype=$modeltype;
@@ -104,75 +109,87 @@ public $modelValidationFields;
                         //     // $manageModel->getFillable(),
 
                         // );
+
     foreach ((new $this->modeltype)->getFillable() as $inputname) {
         # code...
         $this->modelValidationFields["modelInputArray.".$inputname]="required";
     }
-                // dd(
-                //     "this->modelValidationFields",
-                //     $this->modelValidationFields,
-                // );
+                            // dd(
+                            //     "this->modelValidationFields",
+                            //     $this->modelValidationFields,
+                            // );
 
 
-        // $formName="App\\Livewire\\Forms\\".ucfirst($this->modelname)."Form";
-                    //     //     // $formName="\\App\\Livewire\\Forms\\".ucfirst($this->modelname)."Form";
-                    // $formName="Forms\\".ucfirst($this->modelname)."Form";
-                // $formName="FormObjs\\".ucfirst($this->modelname)."Form";
-                    // $formName=ucfirst($this->modelname)."Form";
+                    // $formName="App\\Livewire\\Forms\\".ucfirst($this->modelname)."Form";
+                                //     //     // $formName="\\App\\Livewire\\Forms\\".ucfirst($this->modelname)."Form";
+                                // $formName="Forms\\".ucfirst($this->modelname)."Form";
+                            // $formName="FormObjs\\".ucfirst($this->modelname)."Form";
+                                // $formName=ucfirst($this->modelname)."Form";
 
-                // $this->modelInputArray = $formName;
-                    // $this->modelInputArray = $formName::class;
-                    // $this->modelInputArray = $formName::form;
-                // $this->modelInputArray = new Form($formName);
-                    // $this->modelInputArray = new SuperviseurForm;
-                    // $this->modelInputArray = new SuperviseurForm();
-                    
-                // $this->modelInputArray = new $formName();
-                // $this->modelInputArray = new $formName;
-                // $this->modelInputArray = new $formName(new $this->modeltype);
-        // $this->modelInputArray = $this->superviseurform;
-            // dd(
-            //     $this->superviseurform,
-            //     // $this->superviseurform->rules()
-            // );
-            // $this->modelValidationFields = $this->superviseurform->rules();
-    // if ($this->modelname==="superviseur") {
-    //     $this->modelInputArray = $this->superviseurform;
-    // }elseif ($this->modelname==="site") {
-    //     $this->modelInputArray = $this->siteform;
-    // }elseif ($this->modelname==="user") {
-    //     $this->modelInputArray = $this->userform;
-    // }elseif ($this->modelname==="client") {
-    //     // dd("hey dd pour client!");
-    //     $this->modelInputArray = $this->clientform;
+                            // $this->modelInputArray = $formName;
+                                // $this->modelInputArray = $formName::class;
+                                // $this->modelInputArray = $formName::form;
+                            // $this->modelInputArray = new Form($formName);
+                                // $this->modelInputArray = new SuperviseurForm;
+                                // $this->modelInputArray = new SuperviseurForm();
+                                
+                            // $this->modelInputArray = new $formName();
+                            // $this->modelInputArray = new $formName;
+                            // $this->modelInputArray = new $formName(new $this->modeltype);
+                    // $this->modelInputArray = $this->superviseurform;
+                        // dd(
+                        //     $this->superviseurform,
+                        //     // $this->superviseurform->rules()
+                        // );
+                        // $this->modelValidationFields = $this->superviseurform->rules();
+                // if ($this->modelname==="superviseur") {
+                //     $this->modelInputArray = $this->superviseurform;
+                // }elseif ($this->modelname==="site") {
+                //     $this->modelInputArray = $this->siteform;
+                // }elseif ($this->modelname==="user") {
+                //     $this->modelInputArray = $this->userform;
+                // }elseif ($this->modelname==="client") {
+                //     // dd("hey dd pour client!");
+                //     $this->modelInputArray = $this->clientform;
 
-    // }else {
-    //     $this->modelInputArray = [];
-    // }
+                // }else {
+                //     $this->modelInputArray = [];
+                // }
 
-$this->modelInputArray = $this->getModelForm($this->modelname);
+    // $this->modelInputArray = $this->getModelForm($this->modelname);
+        // $this->modelInputArray = $modelInputArray;
+        // $this->modelInputArray = $modelInputArrayBis;
+    $this->modelInputArray = $themodelform;
+    // dd(
+    //     "modeltype",$modeltype,
 
-                // $test = 'App\Livewire\Forms\Superviseur';
-                // // $test = \App\Livewire\Forms\Superviseur;
-                // // \App\Livewire\Forms\Superviseur $test;
-                // // Superviseur $test;
+    //     "modelInputArray",$modelInputArray,
 
-                // dd(
-                //     "modelInputArray=>",$this->modelInputArray,
-                //     // "this->modelInputArray->validate()",($this->modelInputArray)->validate(),
-                //     "modeltype=>", $this->modeltype,
-                //     // "modeltype=>",new $this->modeltype,
-                //     "-",
-                //     "modelname=>",$this->modelname,
-                //     "formName=>",$formName,
+    //     "this->modelInputArray",$this->modelInputArray,
+    //     // "this->modelInputArrayBis",$this->modelInputArrayBis,
+    // );
 
-                //     // "this->modelInputArrayBis=>",$this->modelInputArrayBis,
-                //     // "this->modelInputArrayBis->validate()=>",($this->modelInputArrayBis)->validate(),
+                    // $test = 'App\Livewire\Forms\Superviseur';
+                    // // $test = \App\Livewire\Forms\Superviseur;
+                    // // \App\Livewire\Forms\Superviseur $test;
+                    // // Superviseur $test;
 
-                //     "test=>",$test,
-                //     "testBis=>",$this->testBis,
+                    // dd(
+                    //     "modelInputArray=>",$this->modelInputArray,
+                    //     // "this->modelInputArray->validate()",($this->modelInputArray)->validate(),
+                    //     "modeltype=>", $this->modeltype,
+                    //     // "modeltype=>",new $this->modeltype,
+                    //     "-",
+                    //     "modelname=>",$this->modelname,
+                    //     "formName=>",$formName,
 
-                // );
+                    //     // "this->modelInputArrayBis=>",$this->modelInputArrayBis,
+                    //     // "this->modelInputArrayBis->validate()=>",($this->modelInputArrayBis)->validate(),
+
+                    //     "test=>",$test,
+                    //     "testBis=>",$this->testBis,
+
+                    // );
 
 
     }
@@ -209,25 +226,25 @@ $this->modelInputArray = $this->getModelForm($this->modelname);
 
 
 // fffff
-public function getModelForm($modelname){
+// public function getModelForm($modelname){
 
-   if ($modelname==="superviseur") {
-        $modelInputArray = $this->superviseurform;
-    }elseif ($modelname==="site") {
-        $modelInputArray = $this->siteform;
-    }elseif ($modelname==="user") {
-        $modelInputArray = $this->userform;
-    }elseif ($modelname==="client") {
-        // dd("hey dd pour client!");
-        $modelInputArray = $this->clientform;
+//    if ($modelname==="superviseur") {
+//         $modelInputArray = $this->superviseurform;
+//     }elseif ($modelname==="site") {
+//         $modelInputArray = $this->siteform;
+//     }elseif ($modelname==="user") {
+//         $modelInputArray = $this->userform;
+//     }elseif ($modelname==="client") {
+//         // dd("hey dd pour client!");
+//         $modelInputArray = $this->clientform;
 
-    }else {
-        $modelInputArray = [];
-    }
+//     }else {
+//         $modelInputArray = [];
+//     }
 
-    return $modelInputArray;
+//     return $modelInputArray;
 
-}
+// }
 
 
 
@@ -267,7 +284,7 @@ public function getModelForeignSelect($foreignModelSelectname){
         $theforeingmodel = 'App\\Models\\'.ucfirst($modelInput[0]);
         $modelnameList = $theforeingmodel::all();
 
-        $modelnameListB = $theforeingmodel::get()->all();
+        // $modelnameListB = $theforeingmodel::get()->all();
 
     }
 
@@ -306,17 +323,17 @@ public function getModelForeignSelect($foreignModelSelectname){
     //     $this->validate();
     // }
 
-        // public $modelInputArray=[];
-        // public SuperviseurForm $superviseurForm;
-    // public SuperviseurForm $modelInputArray;
-        // public "App\\Livewire\\Forms\\SuperviseurForm" $modelInputArray;
+            // public $modelInputArray=[];
+            // public SuperviseurForm $superviseurForm;
+        // public SuperviseurForm $modelInputArray;
+            // public "App\\Livewire\\Forms\\SuperviseurForm" $modelInputArray;
     public $modelInputArray;
-    // public Form $modelInputArray;
-    public FormObjs\SuperviseurForm $superviseurform;
-    // public SuperviseurForm $superviseurform;
-    public FormObjs\SiteForm $siteform;
-    public FormObjs\UserForm $userform;
-    public FormObjs\ClientForm $clientform;
+        // public Form $modelInputArray;
+    // public FormObjs\SuperviseurForm $superviseurform;
+    //     // public SuperviseurForm $superviseurform;
+    // public FormObjs\SiteForm $siteform;
+    // public FormObjs\UserForm $userform;
+    // public FormObjs\ClientForm $clientform;
 
     public function submit()
     {
@@ -378,6 +395,9 @@ public function getModelForeignSelect($foreignModelSelectname){
                 // );
 
         //------END-OLD---------
+
+
+        // dd("this->pageType",$this->pageType);
 
                 // $this->superviseurForm->store();
         // $this->modelInputArray->store();
@@ -556,6 +576,7 @@ public function getModelForeignSelect($foreignModelSelectname){
                         //     "this->clientform",$this->clientform,
                         //     "this->modelInputArray",$this->modelInputArray
                         // );
+
 
                                         // $this->manageEditModelModal = true;
                                     // $this->manageCreateModelModal = true;

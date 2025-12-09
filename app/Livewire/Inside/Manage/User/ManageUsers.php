@@ -8,6 +8,8 @@ use App\Models\User;
 
 use Livewire\Attributes\Layout;
 
+use App\Livewire\Forms\UserForm;
+
 // #[Layout('layouts.app') ]
 
 class ManageUsers extends Component
@@ -19,17 +21,21 @@ class ManageUsers extends Component
     public $users=[];
 
     public $modelclass;
+    public UserForm $modelformclass;
     public function mount(){
 
         $this->modelclass = User::class;
 
     }
 
+
+//  ------DEBUT-TO-COMMENT------   
         public $manageCreateUserModal = false;
 
         public $manageEditUserModal = false;
         public $manageViewUserModal = false;
         public $manageUserModal;
+
 
         public function openModal()
         {
@@ -73,6 +79,10 @@ class ManageUsers extends Component
             // $this->manageViewUserModal = false;
             $this->manageUserModal = null;
         }
+
+
+//  ------END-FIN-TO-COMMENT------   
+
 
     // public $clientId;
     // public $client;

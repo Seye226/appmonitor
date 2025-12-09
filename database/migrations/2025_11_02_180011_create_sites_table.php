@@ -21,12 +21,12 @@ return new class extends Migration
             $table->string('localisation')->unique();
 
 
-                    $table->string('load_info')->nullable();
-                    $table->string('pv_info')->nullable();
-                    $table->string('battery_info')->nullable();
-                    $table->string('grid_info')->nullable();
-                    
-                    $table->string('genset_info')->nullable();
+                $table->string('load_info')->nullable();
+                $table->string('pv_info')->nullable();
+                $table->string('battery_info')->nullable();
+                $table->string('grid_info')->nullable();
+                
+                $table->string('genset_info')->nullable();
 
             
                 // $table->foreignId('client_id')->nullable()->index();

@@ -19,12 +19,6 @@
 
 
 
-
-
-
-
-
-
                                                             
                 <!-- <div>
                     foreach($modelInputArray as $thek=>$thet)
@@ -102,8 +96,6 @@
 
                                                 {{--$manageModelModal->getFillable()[1]--}}
 
-<livewire:inside.plugs.manage-forms :modeltype="$modeltype" :modelInputArray="$modelInputArray" />
-
 
                                                     <!-- form action="{{-- route('manage.managecreateview.post', 'frgthy') --}}" method="POST" -->
                                                     <form wire:submit.prevent="submit" action="{{ route('manage.managecreateview.post', 'frgthy') }}" method="POST">
@@ -117,17 +109,15 @@
 
 
 
-<div class="m-1 p-1">
+<div class="m-1 p-1 bg-gray-100 border-1 border-orange-500">
     
     @if ($errors->any())
-        <div class="alert alert-danger bg-gray-100 border-2 border-red-500">
-
+        <div class="alert alert-danger">
             <ul class="alert alert-danger items-center">
                 @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
                 @endforeach
             </ul>
-
         </div>
     @endif
 
@@ -137,51 +127,56 @@
 
 
 
-                                                        <ul class="border-2 border-green-500 bg-gray-100 rounded-lg" >
-                                                        <!-- <ul class="p-2 m-2 border-2 border-green-500 bg-blue-100" > -->
-
+                                                        <ul>
+                                                            
                                                             {{--dd($modelInputArray,$manageModelModal->getFillable())--}}
                                                             {{--dd($this->modelInputArray,$this->modelInputArray->inputsTypeList)--}}
                                                             <!-- foreach($modelInputArray as $modelInput=>$inputValue) -->
                                                             @foreach($manageModelModal->getFillable() as $modelInput)
-                                                            <!-- <li class="border-1 border-gray-500 bg-gray-300" > -->
-                                                            <li class="p-2 m-2 border-2 border-gray-500 rounded-xl" >
+                                                            <li class="p-2 m-2 border-1 border-gray-500 bg-gray-300" >
+                                                                <p><strong>{{ucfirst($modelInput)}}</strong> : <span class="p-2 m-2 border-2 border-red-300">{{$modelInputArray->inputsTypeList[$modelInput]['inputType']}}</span></p>
 
-                                                                <p class="p-4 m-1 bg-white">
-                                                                <!-- <p class="bg-gray-100"> -->
-                                                                    <strong>
-                                                                        {{ucfirst($modelInput)}}
-                                                                    </strong> : 
-                                                                    <span class="p-2 ml-2 border-2 border-gray-500 rounded-xl">
-                                                                        {{$modelInputArray->inputsTypeList[$modelInput]['inputType']}}
-                                                                    </span>
-                                                                    <span class="pl-6 m-1 text-white">
-                                                                        @error('modelInputArray.'.$modelInput) <strong class="bg-red-500">{{$message}}</strong> @enderror
-                                                                    </span>
-                                                                </p>
+                                                                <p>{{--dd($manageModelModal, $modelInput, $manageModelModal[$modelInput], gettype($manageModelModal[$modelInput]), $manageModelModal->description, gettype($manageModelModal['description']) )--}}</p>
 
-                                                                <!-- <p>{{--dd($manageModelModal, $modelInput, $manageModelModal[$modelInput], gettype($manageModelModal[$modelInput]), $manageModelModal->description, gettype($manageModelModal['description']) )--}}</p> -->
+                                                                <div class="p-2 m-2 border-1 border-gray-500">
 
-                                                                <div class="p-2 m-1 border-2 border-gray-500">
-                                                                <!-- <div class="border-1 border-gray-500"> -->
-
-
-                                                                    <!-- <p>{{--json_encode( $this->getModelForeignSelect($modelInput) )--}}</p> -->
+                                                                    <!-- if( ($pageType === "Edit") && isset($superviseur->id)) -->
+                                                                    @if( ($pageType === "Edit") && isset($manageModelModal->id))
+                                                                        <div class="bg-gray-200 border-1 border-blue-400">
+                                                                            <x-input id="{{$modelInput}}Q" name="{{$modelInput}}Q" wire:model.live.debounce.300ms="modelInputArray.{{$modelInput}}"></x-input>
+                                                                            @error('modelInputArray.'.$modelInput) <span class="bg-red-500">{{$message}}</span> @enderror
+                                                                        </div>
+                                                                    @else
+                                                                        <div class="bg-gray-400 border-1 border-black-400">
+                                                                            <x-input id="{{$modelInput}}Q" name="{{$modelInput}}Q" wire:model.live="modelInputArray.{{$modelInput}}"></x-input>
+                                                                            @error('modelInputArray.'.$modelInput) <span class="bg-red-500">{{$message}}</span> @enderror
+                                                                        </div>
+                                                                    @endif
 
 
-                                                                    <div class="bg-gray-200" wire:dirty.class="border-4 border-red-300" wire:target="modelInputArray.{{$modelInput}}">
+
+                                                                    <p>
+                                                                        {{--json_encode( $this->getModelForeignSelect($modelInput) )--}}
+                                                                    </p>
+
+
+
+                                                                    <div class="p-2 m-2 bg-yellow-200 border-3 border-red-300">
 
                                                                         
 
                                                                         @if($modelInputArray->inputsTypeList[$modelInput]['inputType'] === 'select')
 
-                                                                            <p class="bg-brown-300">
+                                                                            <p class="bg-red-300">
                                                                                 {{$modelInput}} = {{$manageModelModal[$modelInput]}}
                                                                             </p>
 
 
                                                                             <select id="{{$modelInput}}" name="{{$modelInput}}" wire:model.live="modelInputArray.{{$modelInput}}">
-                                                                                    <option value="">Choisir un <strong>{{ ucfirst(( str_replace("_id", "", $modelInput) ))}}</strong></option>
+                                                                                    <option value="kader">kader</option>
+                                                                                    g
+                                                                                    d
+                                                                                    e
                                                                                 @foreach($this->getModelForeignSelect($modelInput) as $theselection)
                                                                                     <option value="{{$theselection->id}}">{{$theselection->id.'-'.$theselection->pseudo}}</option>
                                                                                 @endforeach    
@@ -192,31 +187,16 @@
 
                                                                             <textarea id="{{$modelInput}}" name="{{$modelInput}}" wire:model.live="modelInputArray.{{$modelInput}}"></textarea>
 
-                                                                        @elseif($modelInputArray->inputsTypeList[$modelInput]['inputType'] === 'password')
-
-                                                                            <x-input type="{{$modelInputArray->inputsTypeList[$modelInput]['inputType']}}" id="{{$modelInput}}" name="{{$modelInput}}" wire:model.live.debounce.300ms="modelInputArray.{{$modelInput}}"></x-input>
-                                                                            @error('modelInputArray.'.$modelInput) <span class="bg-red-500">{{$message}}</span> @enderror
-                                                                            
-                                                                            confirm password
-
                                                                         @else
 
                                                                             <x-input type="{{$modelInputArray->inputsTypeList[$modelInput]['inputType']}}" id="{{$modelInput}}" name="{{$modelInput}}" wire:model.live.debounce.300ms="modelInputArray.{{$modelInput}}"></x-input>
+                                                                            @error('modelInputArray.'.$modelInput) <span class="bg-red-500">{{$message}}</span> @enderror
 
                                                                             
                                                                         @endif
                                                                     </div>
-                                                                    
-                                                                    <div>
-                                                                        <p>
-                                                                            @error('modelInputArray.'.$modelInput) <span class="bg-red-500">{{$message}}</span> @enderror
-                                                                        </p>
-                                                                    </div>
 
-                                                                    <!-- <input type="text" wire:model.blur="modelInputArray.{{$modelInput}}" wire:dirty.class="border-red-500"> -->
-                                                                    <div class="bg-blue-200 border-2" wire:dirty.class="border-red-500">HEYEHEHYYDYUFHFHDDJJF</div>
-
-                                                                    <div class="bg-blue-200 border-2" wire:dirty.class="border-red-500" wire:target="modelInputArray.{{$modelInput}}">HEYEHEHYYDYUFHFHDDJJF</div>
+                                                                    <input type="text" wire:model.blur="modelInputArray.{{$modelInput}}" wire:dirty.class="border-red-500">
                                                                     <div wire:dirty wire:target="modelInputArray.{{$modelInput}}">
                                                                         <div>Unsaved ...</div>
                                                                     </div>
@@ -228,15 +208,8 @@
                                                             </li>
                                                             @endforeach
                                                         </ul>
-                                                        
-                                                        <!-- <p>-A:{{--json_encode($this->validate())--}}</p> -->
-                                                        <!-- <p>-B:{{--json_encode($modelInputArray->validated())--}}</p> -->
-                                                        <p>-C-BIS-1:{{--json_encode($modelInputArray->validate())--}}</p>
-                                                        <p>-C-BIS-2:{{json_encode($modelInputArray)}}</p>
-                                                        <p>-D:{{json_encode($errors->any())}}</p>
-                                                        <p>-E:{{--json_encode($errors->fails())--}}</p>
-                                                        <p>-F:{{json_encode($errors)}}</p>
-                                                        <button type="submit" wire:dirty.class="opacity-50 cursor-not-allowed" class="ml-4 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150">
+
+                                                        <button type="submit" class="ml-4 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150">
                                                             {{ __('Enregister') }}
                                                         </button>
                                                     </form>
